@@ -25,7 +25,7 @@ case $1 in
         if [[ -z $project_type ]]; then
             print "E: no project type specified"
             exit $E_PARAM
-        elif [[ ! -f ./pt-$2.zsh ]]; then
+        elif [[ ! -f $HOME/.zshide/pt-$2.zsh ]]; then
             print "E: unknown project type: $project_type"
             exit $E_PARAM
         fi
@@ -36,7 +36,7 @@ case $1 in
             exit $E_PARAM
         fi
 
-        zsh pt-$project_type.zsh ${@:3}
+        zsh $HOME/.zshide/pt-$project_type.zsh ${@:3}
         ;;
 
     (*)

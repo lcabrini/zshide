@@ -1,4 +1,4 @@
-zsh lang-c.zsh
+zsh $HOME/.zshide/lang-c.zsh
 
 # TODO: Fedora specific for now.
 if [[ -z $(whence sdl2-config) ]]; then

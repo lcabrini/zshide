@@ -1,4 +1,4 @@
-VALGRIND=1
+VALGRIND=0
 
 packages=
 
