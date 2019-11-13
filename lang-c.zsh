@@ -1,3 +1,5 @@
+VALGRIND=1
+
 packages=
 
 if [[ -z $(whence gcc) ]]; then
@@ -5,7 +7,7 @@ if [[ -z $(whence gcc) ]]; then
     packages=gcc
 fi
 
-if [[ -z $(whence valgrind) ]]; then
+if [[ $VALGRIND -ne 0 && -z $(whence valgrind) ]]; then
     print "W: Valgrind not found."
     packages="$packages valgrind"
 fi
