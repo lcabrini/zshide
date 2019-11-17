@@ -36,6 +36,7 @@ case $1 in
             exit $E_PARAM
         fi
 
+        zsh $HOME/.zshide/github-create-repo.zsh $project_name
         zsh $HOME/.zshide/proj-$project_type.zsh ${@:3}
         ;;
 
