@@ -37,7 +37,7 @@ case $1 in
         fi
 
         zsh $HOME/.zshide/github-create-repo.zsh $project_name
-        zsh $HOME/.zshide/proj-$project_type.zsh ${@:3}
+        zsh $HOME/.zshide/proj-$project_type.zsh $project_name
         ;;
 
     (*)
