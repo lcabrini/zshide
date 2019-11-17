@@ -3,7 +3,7 @@
 # The main zshide script. This will call other scripts.
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
-read usage <<EOF
+read -rd '' usage <<EOF
 usage: $(basename $0) command
 
 Commands:
