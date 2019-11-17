@@ -39,7 +39,7 @@ case $1 in
         fi
 
         zsh $HOME/.zshide/github-create-repo.zsh
-        zsh $HOME/.zshide/proj-$project_type.zsh
+        zsh $HOME/.zshide/proj-$ZI_PROJECT_TYPE.zsh
         ;;
 
     (*)
