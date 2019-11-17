@@ -21,8 +21,9 @@ fi
 
 case $1 in 
     (np)
-        project_type=$2
-        if [[ -z $project_type ]]; then
+        #project_type=$2
+        export ZI_PROJECT_TYPE=$2
+        if [[ -z $ZI_PROJECT_TYPE ]]; then
             print "E: no project type specified"
             exit $E_PARAM
         elif [[ ! -f $HOME/.zshide/proj-$2.zsh ]]; then
@@ -30,14 +31,15 @@ case $1 in
             exit $E_PARAM
         fi
 
-        project_name=$3
-        if [[ -z $project_name ]]; then
+        #project_name=$3
+        export ZI_PROJECT_NAME=$3
+        if [[ -z $ZI_PROJECT_NAME ]]; then
             print "E: no project name specified"
             exit $E_PARAM
         fi
 
-        zsh $HOME/.zshide/github-create-repo.zsh $project_name
-        zsh $HOME/.zshide/proj-$project_type.zsh $project_name
+        zsh $HOME/.zshide/github-create-repo.zsh
+        zsh $HOME/.zshide/proj-$project_type.zsh
         ;;
 
     (*)
