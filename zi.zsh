@@ -38,8 +38,13 @@ case $1 in
             exit $E_PARAM
         fi
 
-        zsh $HOME/.zshide/github-create-repo.zsh
+        export ZI_SSH_URL=$(zsh $HOME/.zshide/github-create-repo.zsh)
         zsh $HOME/.zshide/proj-$ZI_PROJECT_TYPE.zsh
+        cd $HOME/Git/$ZI_PROJECT_NAME
+        git add .
+        git commit -m "zshide applied template"
+        git push
+        cd -
         ;;
 
     (*)
