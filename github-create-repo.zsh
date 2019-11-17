@@ -30,3 +30,5 @@ cat >> $HOME/Git/$ZI_PROJECT_NAME <<EOF
 # Editor
 .*.swp
 EOF
+
+print $ssh_url
