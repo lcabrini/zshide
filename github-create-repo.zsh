@@ -25,4 +25,4 @@ repodata=$(print $repodata | sed 's/^\s*//g' | tr -d '\n')
 
 response=$(curl -H $auth -H $accept -d $repodata $url)
 ssh_url=$(print $response | jq '.ssh_url' | tr -d '"')
-git clone $ssh_url
+(cd $HOME/Git && git clone $ssh_url)
