@@ -1,5 +1,4 @@
-repo=$1
-if [[ -z $repo ]]; then
+if [[ -z $ZI_PROJECT_NAME ]]; then
     print "E: no repository name" >> /dev/stderr
     exit 1
 fi
@@ -11,7 +10,7 @@ accept="Accept: application/vnd.github.v3+json"
 url="https://api.github.com/user/repos"
 read -rd '' repodata <<EOF
 {
-    "name": "$repo",
+    "name": "$ZI_PROJECT_NAME",
     "description": "created by zshide",
     "private": false,
     "has_issues": true,
