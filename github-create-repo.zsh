@@ -26,7 +26,7 @@ response=$(curl -H $auth -H $accept -d $repodata $url)
 ssh_url=$(print $response | jq '.ssh_url' | tr -d '"')
 (cd $HOME/Git && git clone $ssh_url)
 
-cat >> $HOME/Git/$ZI_PROJECT_NAME <<EOF
+cat >> $HOME/Git/$ZI_PROJECT_NAME/.gitignore <<EOF
 # Editor
 .*.swp
 EOF
