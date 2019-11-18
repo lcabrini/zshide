@@ -5,7 +5,7 @@ if [[ -z $ZI_PROJECT_NAME ]]; then
     exit 1
 fi
 
-cat > $HOME/Git/$ZI_PROJECT_NAME/main.c <<EOF
+cat > $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME/main.c <<EOF
 #include <stdio.h>
 
 int main(int argc, char *argv[])

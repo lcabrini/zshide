@@ -3,7 +3,7 @@ if [[ -z $ZI_PROJECT_NAME ]]; then
     exit 1
 fi
 
-token=$(cat $HOME/.zshide/tokens.txt | grep github | cut -d'=' -f2)
+token=$(cat $ZI_HOME/tokens.txt | grep github | cut -d'=' -f2)
 auth="Authorization: token $token"
 accept="Accept: application/vnd.github.v3+json"
 
@@ -26,7 +26,7 @@ response=$(curl -H $auth -H $accept -d $repodata $url)
 ssh_url=$(print $response | jq '.ssh_url' | tr -d '"')
 (cd $HOME/Git && git clone $ssh_url)
 
-cat >> $HOME/Git/$ZI_PROJECT_NAME/.gitignore <<EOF
+cat >> $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME/.gitignore <<EOF
 # Editor
 .*.swp
 EOF
