@@ -20,6 +20,8 @@ if [[ $# -lt 1 ]]; then
     exit $E_COMMAND
 fi
 
+export ZI_HOME=$HOME/.zshide
+
 case $1 in 
     (np)
         #project_type=$2
