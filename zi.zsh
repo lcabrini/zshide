@@ -21,6 +21,7 @@ if [[ $# -lt 1 ]]; then
 fi
 
 export ZI_HOME=$HOME/.zshide
+export ZI_PROJECTS_DIR=$HOME/Git
 
 case $1 in 
     (np)
