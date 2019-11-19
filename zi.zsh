@@ -44,10 +44,10 @@ case $1 in
 
         if [[ -n $(zsh $HOME/.zshide/github-has-repo.zsh) ]]; then
             print "E: project already exists on github." > /dev/stderr
-            exit E_EXISTS
+            exit $E_EXISTS
         elif [[ -d $HOME/Git/$ZI_PROJECT_NAME ]]; then
             print "E: local project directory exists." > /dev/stderr
-            exit E_EXISTS
+            exit $E_EXISTS
         fi
 
         export ZI_SSH_URL=$(zsh $HOME/.zshide/github-create-repo.zsh)
