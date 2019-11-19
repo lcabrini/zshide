@@ -60,6 +60,10 @@ case $1 in
         cd -
         ;;
 
+    (dp)
+        print "W: Not implemented yet"
+        ;;
+
     (*)
         print "E: unknown command: $1"
         exit $E_COMMAND
