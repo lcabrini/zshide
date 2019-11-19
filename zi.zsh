@@ -52,7 +52,9 @@ case $1 in
         fi
 
         print "I: Creating project $ZI_PROJECT_NAME"
-        export ZI_SSH_URL=$(zsh $HOME/.zshide/github-create-repo.zsh)
+        #export ZI_SSH_URL=$(zsh $HOME/.zshide/github-create-repo.zsh)
+        zsh $ZI_HOME/github-create-repo.zsh
+        export ZI_SSH_URL=$(cat $ZI_STATE | grep SSH_URL | cut -d'=' -f2)
         zsh $HOME/.zshide/proj-$ZI_PROJECT_TYPE.zsh
         cd $HOME/Git/$ZI_PROJECT_NAME
         git add .

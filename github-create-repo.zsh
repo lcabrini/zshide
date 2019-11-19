@@ -39,4 +39,4 @@ rm $ZI_HOME/github-repos.json
 zsh $ZI_HOME/github-get-repos.zsh > /dev/null 2>&1 &
 print "I: refreshing local GitHub repo list"
 
-print $ssh_url
+print "SSH_URL=$ssh_url" >> $ZI_STATE
