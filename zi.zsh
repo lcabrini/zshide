@@ -50,6 +50,7 @@ case $1 in
             exit $E_EXISTS
         fi
 
+        print "I: Creating project $ZI_PROJECT_NAME"
         export ZI_SSH_URL=$(zsh $HOME/.zshide/github-create-repo.zsh)
         zsh $HOME/.zshide/proj-$ZI_PROJECT_TYPE.zsh
         cd $HOME/Git/$ZI_PROJECT_NAME
