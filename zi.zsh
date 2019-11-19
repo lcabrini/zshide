@@ -20,9 +20,6 @@ if [[ $# -lt 1 ]]; then
     exit $E_COMMAND
 fi
 
-autoload -U colors
-colors
-
 source $ZI_HOME/functions.zsh
 
 export ZI_HOME=$HOME/.zshide
@@ -38,7 +35,8 @@ case $1 in
             err "no project type specified"
             exit $E_PARAM
         elif [[ ! -f $HOME/.zshide/proj-$2.zsh ]]; then
-            print "E: unknown project type: $project_type"
+            #print "E: unknown project type: $project_type"
+            err "unknow project type: $ZI_PROJECT_TYPE"
             exit $E_PARAM
         fi
 
@@ -86,7 +84,7 @@ case $1 in
         r=$(print $r | tr A-Z a-z)
         case $r in 
             (y|yes)
-                print "yes"
+                zsh $ZI_HOME/github-delete-repo.zsh
                 ;;
             (n|no)
                 print "no"
