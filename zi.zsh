@@ -54,8 +54,8 @@ case $1 in
         zsh $HOME/.zshide/proj-$ZI_PROJECT_TYPE.zsh
         cd $HOME/Git/$ZI_PROJECT_NAME
         git add .
-        git commit -m "zshide applied template"
-        git push
+        git commit -m "zshide applied template" > /dev/null 2>&1
+        git push > /dev/null 2>&1
         cd -
         ;;
 

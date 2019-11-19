@@ -24,7 +24,7 @@ repodata=$(print $repodata | sed 's/^\s*//g' | tr -d '\n')
 
 response=$(curl -s -H $auth -H $accept -d $repodata $url)
 ssh_url=$(print $response | jq '.ssh_url' | tr -d '"')
-(cd $ZI_PROJECTS_DIR && git clone $ssh_url)
+(cd $ZI_PROJECTS_DIR && git clone $ssh_url > /dev/null 2>&1)
 
 cat >> $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME/.gitignore <<EOF
 # Editor
