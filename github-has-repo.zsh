@@ -4,7 +4,6 @@ if [[ -z $ZI_PROJECT_NAME ]]; then
 fi
 
 zsh $ZI_HOME/github-get-repos.zsh
-repos=$HOME/.zshide/github-repos.json
+repos=$ZI_HOME/github-repos.json
 repo_names=$(cat $repos | jq '.[].name' | tr -d '"')
 print $repo_names | grep ^$ZI_PROJECT_NAME$
-
