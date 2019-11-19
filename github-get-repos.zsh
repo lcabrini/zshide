@@ -20,7 +20,7 @@ if [[ ! -f $repos ]]; then
     accept="Accept: application/vnd.github.v3+json"
 
     url="https://api.github.com/user/repos"
-    curl -H $auth -H $accept $url > $repos
+    curl -s -H $auth -H $accept $url > $repos
 fi
 
 rm $pid_file
