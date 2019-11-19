@@ -7,6 +7,9 @@ if [[ -f $pid_file ]]; then
     if [[ $pid != $p ]]; then
         print "W: PIDs don't match" > /dev/stderr
     else
+        while [[ -f $pid_file ]]; do
+            sleep 1
+        done
         exit 1
     fi
 fi
@@ -14,6 +17,14 @@ fi
 print $$ > $pid_file
 
 repos=$ZI_HOME/github-repos.json
+if [[ -f $repos ]]; then
+    now=$(date +%s)
+    ts=$(stat -c "%Y" $repos)
+    if [[ $(( $now - $ts )) -gt $(( 3600 * 24 )) ]]; then
+        rm -f $repos
+    fi
+fi
+
 if [[ ! -f $repos ]]; then
     token=$(cat $ZI_HOME/tokens.txt | grep github | cut -d'=' -f2)
     auth="Authorization: token $token"
