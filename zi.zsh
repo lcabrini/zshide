@@ -22,6 +22,7 @@ fi
 
 export ZI_HOME=$HOME/.zshide
 export ZI_PROJECTS_DIR=$HOME/Git
+export ZI_STATE=$(mktemp -t zshide-$USER.XXXXXX)
 
 case $1 in 
     (np)
@@ -69,3 +70,5 @@ case $1 in
         exit $E_COMMAND
         ;;
 esac
+
+rm $ZI_STATE
