@@ -33,6 +33,6 @@ EOF
 
 # XXX: repository list has changed, so refresh it. Is this a good idea?
 rm $ZI_HOME/github-repos.json
-zsh $ZI_HOME/github-get-repos > /dev/null 2>&1 &
+zsh $ZI_HOME/github-get-repos.zsh > /dev/null 2>&1 &
 
 print $ssh_url
