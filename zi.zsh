@@ -64,7 +64,23 @@ case $1 in
         ;;
 
     (dp)
-        print "W: Not implemented yet"
+        export ZI_PROJECT_NAME=$2
+        print "Warning! You are about to delete $ZI_PROJECT_NAME!"
+        print "This is an irreverible action."
+        print -n "Are you sure? (Y/N) "
+        read r
+        r=$(print $r | tr A-Z a-z)
+        case $r in 
+            (y|yes)
+                print "yes"
+                ;;
+            (n|no)
+                print "no"
+                ;;
+            (*)
+                print "don't get you"
+                ;;
+        esac
         ;;
 
     (*)
