@@ -20,6 +20,11 @@ if [[ $# -lt 1 ]]; then
     exit $E_COMMAND
 fi
 
+autoload -U colors
+colors
+
+source $ZI_HOME/functions.zsh
+
 export ZI_HOME=$HOME/.zshide
 export ZI_PROJECTS_DIR=$HOME/Git
 export ZI_STATE=$(mktemp -t zshide-$USER.XXXXXX)
@@ -29,7 +34,8 @@ case $1 in
         #project_type=$2
         export ZI_PROJECT_TYPE=$2
         if [[ -z $ZI_PROJECT_TYPE ]]; then
-            print "E: no project type specified"
+            #print "$fg[red]E: no project type specified$reset_color"
+            err "no project type specified"
             exit $E_PARAM
         elif [[ ! -f $HOME/.zshide/proj-$2.zsh ]]; then
             print "E: unknown project type: $project_type"
