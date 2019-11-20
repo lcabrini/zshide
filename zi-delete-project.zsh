@@ -7,18 +7,10 @@ if [[ -z $has_repo && -z $has_wdir ]]; then
 fi
 print "Warning! You are about to delete $ZI_PROJECT_NAME!"
 print "This is an irreverible action."
-print -n "Are you sure? (Y/N) "
-read r
-r=$(print $r | tr A-Z a-z)
-case $r in 
-    (y|yes)
-        . $ZI_HOME/github-delete-repo.zsh
-        ;;
-    (n|no)
-        print "no"
-        ;;
-    (*)
-        print "don't get you"
-        ;;
-esac
-
+yesno "Are you sure"
+a=$?
+if [[ $a -eq 0 ]]; then
+    print "to be deleted"
+else
+    print "do not delete"
+fi
