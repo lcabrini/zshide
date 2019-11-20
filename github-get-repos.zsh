@@ -20,7 +20,7 @@ repos=$ZI_HOME/github-repos.json
 if [[ -f $repos ]]; then
     now=$(date +%s)
     ts=$(stat -c "%Y" $repos)
-    if [[ $(( $now - $ts )) -gt $(( 3600 * 24 )) ]]; then
+    if [[ $(( $now - $ts )) -gt $(( 3600 * 10 )) ]]; then
         rm -f $repos
     fi
 fi
