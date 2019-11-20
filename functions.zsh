@@ -1,14 +1,11 @@
-autoload -U colors
-colors
-
-function info() {
+info() {
     print "$fg[green]I: $1$reset_color" > /dev/stderr
 }
 
-function warn() {
+warn() {
     print "$fg[yellow]W: $1$reset_color" > /dev/stderr
 }
 
-function err() {
+err() {
     print "$fg[red]E: $1$reset_color" > /dev/stderr
 }
