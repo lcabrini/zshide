@@ -2,7 +2,7 @@ if [[ -z $ZI_PROJECT_TYPE ]]; then
     err "no project type specified"
     exit $E_PARAM
 elif [[ ! -f $HOME/.zshide/proj-$2.zsh ]]; then
-    err "unknow project type: $ZI_PROJECT_TYPE"
+    err "unknown project type: $ZI_PROJECT_TYPE"
     exit $E_PARAM
 fi
 
