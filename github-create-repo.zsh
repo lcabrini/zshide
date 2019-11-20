@@ -3,9 +3,10 @@ if [[ -z $ZI_PROJECT_NAME ]]; then
     exit 1
 fi
 
-token=$(cat $ZI_HOME/tokens.txt | grep github | cut -d'=' -f2)
-auth="Authorization: token $token"
-accept="Accept: application/vnd.github.v3+json"
+. $ZI_HOME/github.zsh
+#token=$(cat $ZI_HOME/tokens.txt | grep github | cut -d'=' -f2)
+#auth="Authorization: token $token"
+#accept="Accept: application/vnd.github.v3+json"
 
 url="https://api.github.com/user/repos"
 read -rd '' repodata <<EOF
@@ -23,7 +24,7 @@ read -rd '' repodata <<EOF
 EOF
 repodata=$(print $repodata | tr -d '\n')
 
-response=$(curl -s -H $auth -H $accept -d $repodata $url)
+response=$($CURL -H $auth -H $accept -d $repodata $url)
 ssh_url=$(print $response | jq '.ssh_url' | tr -d '"')
 print "I: created GitHub repo $ZI_PROJECT_NAME"
 (cd $ZI_PROJECTS_DIR && git clone $ssh_url > /dev/null 2>&1)
