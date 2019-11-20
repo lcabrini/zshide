@@ -10,7 +10,10 @@ print "This is an irreverible action."
 yesno "Are you sure"
 a=$?
 if [[ $a -eq 0 ]]; then
-    print "to be deleted"
+    . $ZI_HOME/github-delete-repo.zsh
+    rm -f $ZI_HOME/github-repos.json
+    . $ZI_HOME/github-get-repos.zsh &
+    rm -rf $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME
 else
     print "do not delete"
 fi
