@@ -7,6 +7,7 @@ install: $(ZSHIDE_DIR) tokens.txt
 	cp proj-*.zsh $(ZSHIDE_DIR)
 	cp github-*.zsh $(ZSHIDE_DIR)
 	cp functions.zsh $(ZSHIDE_DIR)
+	cp zi-* $(ZSHIDE_DIR)
 	cp tokens.txt $(ZSHIDE_DIR)
 	
 $(ZSHIDE_DIR):
