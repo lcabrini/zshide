@@ -33,11 +33,13 @@ case $1 in
     (np)
         export ZI_PROJECT_TYPE=$2
         export ZI_PROJECT_NAME=$3
+        export ZI_PROJECT_PATH=$ZI_PROJECTS_DIR/$ZI_PROJECT_NAME
         . $ZI_HOME/zi-new-project
         ;;
 
     (dp)
         export ZI_PROJECT_NAME=$2
+        export ZI_PROJECT_PATH=$ZI_PROJECTS_DIR/$ZI_PROJECT_NAME
         . $ZI_HOME/zi-delete-project.zsh
         ;;
 
