@@ -21,7 +21,7 @@ EOF
 repodata=$(print $repodata | tr -d '\n')
 response=$(eval "$CURL $HEADERS -d '$repodata' $url")
 ssh_url=$(print $response | jq '.ssh_url' | tr -d '"')
-info "I: created GitHub repo $ZI_PROJECT_NAME"
+info "created GitHub repo $ZI_PROJECT_NAME"
 (cd $ZI_PROJECTS_DIR && git clone $ssh_url > /dev/null 2>&1)
 info "cloned $ZI_PROJECT_NAME into $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME"
 
