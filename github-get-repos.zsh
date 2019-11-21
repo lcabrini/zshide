@@ -6,7 +6,7 @@ if [[ -f $pid_file ]]; then
     pid=$(cat $pid_file)
 
     if [[ $pid != $p ]]; then
-        print "W: PIDs don't match" > /dev/stderr
+        warn "W: PIDs don't match"
     else
         while [[ -f $pid_file ]]; do
             sleep 1
