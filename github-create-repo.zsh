@@ -19,8 +19,7 @@ read -rd '' repodata <<EOF
 }
 EOF
 repodata=$(print $repodata | tr -d '\n')
-
-response=$($CURL $HEADERS -d $repodata $url)
+response=$(eval "$CURL $HEADERS -d '$repodata' $url")
 ssh_url=$(print $response | jq '.ssh_url' | tr -d '"')
 print "I: created GitHub repo $ZI_PROJECT_NAME"
 (cd $ZI_PROJECTS_DIR && git clone $ssh_url > /dev/null 2>&1)
