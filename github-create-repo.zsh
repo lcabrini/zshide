@@ -33,7 +33,7 @@ info "applied general .gitignore"
 
 # XXX: repository list has changed, so refresh it. Is this a good idea?
 rm $ZI_HOME/github-repos.json
-zsh $ZI_HOME/github-get-repos.zsh > /dev/null 2>&1 &
+. $ZI_HOME/github-get-repos.zsh & #> /dev/null 2>&1 &
 info "refreshing local GitHub repo list"
 
 print "SSH_URL=$ssh_url" >> $ZI_STATE
