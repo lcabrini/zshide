@@ -1,5 +1,6 @@
 pid_file=$ZI_HOME/github-get-repos.pid
 p=$(ps ax | grep $0 | grep --invert-match grep | awk '{ print $1}')
+. $ZI_HOME/github.zsh
 
 if [[ -f $pid_file ]]; then
     pid=$(cat $pid_file)
@@ -26,12 +27,12 @@ if [[ -f $repos ]]; then
 fi
 
 if [[ ! -f $repos ]]; then
-    token=$(cat $ZI_HOME/tokens.txt | grep github | cut -d'=' -f2)
-    auth="Authorization: token $token"
-    accept="Accept: application/vnd.github.v3+json"
+    #token=$(cat $ZI_HOME/tokens.txt | grep github | cut -d'=' -f2)
+    #auth="Authorization: token $token"
+    #accept="Accept: application/vnd.github.v3+json"
 
     url="https://api.github.com/user/repos"
-    curl -s -H $auth -H $accept $url > $repos
+    eval "$CURL $HEADERS $url > $repos"
 fi
 
 rm $pid_file
