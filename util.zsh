@@ -35,3 +35,29 @@ yesno() {
         esac
     done
 }
+
+read_setting() {
+    key=$1
+    rc=$ZI_HOME/zshiderc
+    if [[ ! -f $rc ]]; then
+        print ""
+    elif [[ -z $(cat $rc | grep "^$key") ]]; then
+        print ""
+    else
+        print $(cat $rc | grep "^$key" | cut -d'=' -f2)
+    fi
+}
+
+write_setting() {
+    key=$1
+    val=$2
+    rc=$ZI_HOME/zshiderc
+    if [[ -z $(grep "^$key=" $rc) ]]; then
+        print "$key=$val" >> $rc
+    else
+        tmp=$(mktemp -t zshide-$USER.XXXXXX)
+        grep --invert-match "^$key=" $rc > $tmp
+        print "$key=$val" >> $tmp
+        mv $tmp $rc
+    fi
+}
