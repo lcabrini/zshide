@@ -15,7 +15,7 @@ if [[ $a -ne 0 ]]; then
 fi
     
 . $ZI_HOME/github-delete-repo.zsh
-rm -f $ZI_HOME/github-repos.json
-. $ZI_HOME/github-get-repos.zsh &
+#rm -f $ZI_HOME/github-repos.json
+#. $ZI_HOME/github-get-repos.zsh &
 rm -rf $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME
 
