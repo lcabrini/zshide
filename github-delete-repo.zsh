@@ -11,4 +11,8 @@ fi
 # XXX: change hardcoded username
 url="https://api.github.com/repos/lcabrini/$ZI_PROJECT_NAME"
 response=$(eval "$CURL -X DELETE $HEADERS $url")
-print $response
+
+# XXX: repository list has changed, so refresh it. Is this a good idea?
+rm $ZI_HOME/github-repos.json
+. $ZI_HOME/github-get-repos.zsh & #> /dev/null 2>&1 &
+info "refreshing local GitHub repo list"
