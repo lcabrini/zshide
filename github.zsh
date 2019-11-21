@@ -6,3 +6,6 @@ URL="https://api.github.com"
 
 # XXX: for now only used by github related functions. Move if needed.
 CURL="curl -s"
+
+. $ZI_HOME/util.zsh
+. $ZI_HOME/github-whoami.zsh
