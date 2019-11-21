@@ -27,7 +27,7 @@ export ZI_HOME=$HOME/.zshide
 export ZI_PROJECTS_DIR=$HOME/Git
 export ZI_STATE=$(mktemp -t zshide-$USER.XXXXXX)
 
-. $ZI_HOME/zi-util.zsh
+. $ZI_HOME/util.zsh
 
 case $1 in 
     (np)
