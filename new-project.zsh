@@ -11,7 +11,8 @@ if [[ -z $ZI_PROJECT_NAME ]]; then
     exit $E_PARAM
 fi
 
-if [[ -n $(zsh $ZI_HOME/github-has-repo.zsh) ]]; then
+. $ZI_HOME/github-has-repo.zsh
+if [[ -n $response ]]; then
     err "project already exists on github."
     exit $E_EXISTS
 elif [[ -d $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME ]]; then
