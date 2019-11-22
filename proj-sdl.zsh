@@ -1,8 +1,7 @@
-zsh $HOME/.zshide/lang-c.zsh
+. $ZI_HOME/lang-c.zsh
 
-project_name=$1
-if [[ -z $project_name ]]; then
-    print "E: no project name"
+if [[ -z $ZI_PROJECT_NAME ]]; then
+    err "no project name"
     exit 1
 fi
 
