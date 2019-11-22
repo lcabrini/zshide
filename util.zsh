@@ -40,11 +40,15 @@ read_setting() {
     key=$1
     rc=$ZI_HOME/zshiderc
     if [[ ! -f $rc ]]; then
-        print ""
+        #print ""
+        eval "$key="
     elif [[ -z $(cat $rc | grep "^$key") ]]; then
-        print ""
+        #print ""
+        eval "$key="
     else
-        print $(cat $rc | grep "^$key" | cut -d'=' -f2)
+        val=$(cat $rc | grep "^$key" | cut -d'=' -f2)
+        print "key: $key, val: $val"
+        eval "$key=$val"
     fi
 }
 
