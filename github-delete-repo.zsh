@@ -8,8 +8,7 @@ fi
 
 . $ZI_HOME/github.zsh
 
-# XXX: change hardcoded username
-url="https://api.github.com/repos/lcabrini/$ZI_PROJECT_NAME"
+url="https://api.github.com/repos/$GITHUB_LOGIN/$ZI_PROJECT_NAME"
 response=$(eval "$CURL -X DELETE $HEADERS $url")
 
 # XXX: repository list has changed, so refresh it. Is this a good idea?
