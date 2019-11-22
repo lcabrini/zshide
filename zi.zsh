@@ -56,7 +56,7 @@ case $1 in
         ;;
 
     (*)
-        print "E: unknown command: $1"
+        err "E: unknown command: $1"
         exit $E_COMMAND
         ;;
 esac
