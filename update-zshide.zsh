@@ -8,3 +8,4 @@ cd zshide
 info "updating zshide"
 make > /dev/null 2>&1
 
+rm -rf $workdir
