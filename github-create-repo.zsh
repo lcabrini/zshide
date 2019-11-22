@@ -1,4 +1,4 @@
-if [[ -z $ZI_PROJECT_NAME ]]; then
+if [[ -z $PROJECT_NAME ]]; then
     err "no repository name"
     exit 1
 fi
@@ -8,7 +8,7 @@ fi
 url="$URL/user/repos"
 read -rd '' repodata <<EOF
 {
-"name": "$ZI_PROJECT_NAME",
+"name": "$PROJECT_NAME",
 "description": "created by zshide",
 "private": false,
 "has_issues": true,
@@ -21,11 +21,11 @@ EOF
 repodata=$(print $repodata | tr -d '\n')
 response=$(eval "$CURL $HEADERS -d '$repodata' $url")
 ZI_REPO_URL=$(print $response | jq '.ssh_url' | tr -d '"')
-info "created GitHub repo $ZI_PROJECT_NAME"
-(cd $ZI_PROJECTS_DIR && git clone $ZI_REPO_URL > /dev/null 2>&1)
-info "cloned $ZI_PROJECT_NAME into $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME"
+info "created GitHub repo $PROJECT_NAME"
+(cd $PROJECTS_DIR && git clone $REPO_URL > /dev/null 2>&1)
+info "cloned $PROJECT_NAME into $PROJECTS_DIR/$PROJECT_NAME"
 
-cat >> $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME/.gitignore <<EOF
+cat >> $PROJECTS_DIR/$PROJECT_NAME/.gitignore <<EOF
 # Editor
 .*.swp
 EOF

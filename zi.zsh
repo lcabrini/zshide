@@ -32,21 +32,21 @@ if [[ $# -lt 1 ]]; then
 fi
 
 ZI_HOME=$HOME/.zshide
-ZI_PROJECTS_DIR=$HOME/Git
+PROJECTS_DIR=$HOME/Git
 
 . $ZI_HOME/util.zsh
 
 case $1 in 
     (np)
-        ZI_PROJECT_TYPE=$2
-        ZI_PROJECT_NAME=$3
-        ZI_PROJECT_PATH=$ZI_PROJECTS_DIR/$ZI_PROJECT_NAME
+        PROJECT_TYPE=$2
+        PROJECT_NAME=$3
+        PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
         . $ZI_HOME/new-project.zsh
         ;;
 
     (dp)
-        ZI_PROJECT_NAME=$2
-        ZI_PROJECT_PATH=$ZI_PROJECTS_DIR/$ZI_PROJECT_NAME
+        PROJECT_NAME=$2
+        PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
         . $ZI_HOME/delete-project.zsh
         ;;
 
