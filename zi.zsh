@@ -15,7 +15,11 @@ read -rd '' usage <<EOF
 usage: $(basename $0) command
 
 Commands:
-    np         create a new project
+    np      create a new project
+    dp      delete a project
+    rs      read a setting
+    ws      write a setting
+    up      update zshide
 EOF
 
 if [[ $# -lt 1 ]]; then
