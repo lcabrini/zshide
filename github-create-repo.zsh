@@ -20,9 +20,9 @@ read -rd '' repodata <<EOF
 EOF
 repodata=$(print $repodata | tr -d '\n')
 response=$(eval "$CURL $HEADERS -d '$repodata' $url")
-ssh_url=$(print $response | jq '.ssh_url' | tr -d '"')
+ZI_REPO_URL=$(print $response | jq '.ssh_url' | tr -d '"')
 info "created GitHub repo $ZI_PROJECT_NAME"
-(cd $ZI_PROJECTS_DIR && git clone $ssh_url > /dev/null 2>&1)
+(cd $ZI_PROJECTS_DIR && git clone $ZI_REPO_URL > /dev/null 2>&1)
 info "cloned $ZI_PROJECT_NAME into $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME"
 
 cat >> $ZI_PROJECTS_DIR/$ZI_PROJECT_NAME/.gitignore <<EOF
@@ -36,4 +36,4 @@ rm $ZI_HOME/github-repos.json
 . $ZI_HOME/github-get-repos.zsh #& #> /dev/null 2>&1 &
 info "refreshing local GitHub repo list"
 
-print "SSH_URL=$ssh_url" >> $ZI_STATE
+#print "SSH_URL=$ssh_url" >> $ZI_STATE

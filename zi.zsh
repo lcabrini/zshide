@@ -25,7 +25,7 @@ fi
 
 ZI_HOME=$HOME/.zshide
 ZI_PROJECTS_DIR=$HOME/Git
-ZI_STATE=$(mktemp -t zshide-$USER.XXXXXX)
+#ZI_STATE=$(mktemp -t zshide-$USER.XXXXXX)
 
 . $ZI_HOME/util.zsh
 
@@ -59,4 +59,4 @@ case $1 in
         ;;
 esac
 
-rm $ZI_STATE
+#rm $ZI_STATE
