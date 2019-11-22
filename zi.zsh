@@ -55,6 +55,10 @@ case $1 in
         write_setting $key $val
         ;;
 
+    (up)
+        . $ZI_HOME/update-zshide.zsh
+        ;;
+
     (*)
         err "unknown command: $1"
         exit $E_COMMAND
