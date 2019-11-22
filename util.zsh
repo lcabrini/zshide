@@ -47,7 +47,7 @@ read_setting() {
         eval "$key="
     else
         val=$(cat $rc | grep "^$key" | cut -d'=' -f2)
-        print "key: $key, val: $val"
+        #print "key: $key, val: $val"
         eval "$key=$val"
     fi
 }
