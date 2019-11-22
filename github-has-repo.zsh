@@ -3,7 +3,8 @@ if [[ -z $ZI_PROJECT_NAME ]]; then
     exit 1
 fi
 
-zsh $ZI_HOME/github-get-repos.zsh
+. $ZI_HOME/github-get-repos.zsh
 repos=$ZI_HOME/github-repos.json
 repo_names=$(cat $repos | jq '.[].name' | tr -d '"')
-print $repo_names | grep ^$ZI_PROJECT_NAME$
+response=$(print $repo_names | grep "^$ZI_PROJECT_NAME$")
+#print $repo_names | grep ^$ZI_PROJECT_NAME$
