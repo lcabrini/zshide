@@ -13,3 +13,12 @@ int main(int argc, char *argv[])
     return 0;
 }
 EOF
+
+cat > $ZI_PROJECT_PATH/Makefile <<EOF
+CC = gcc
+
+all: $ZI_PROJECT_NAME
+
+$ZI_PROJECT_NAME:
+EOF
+
