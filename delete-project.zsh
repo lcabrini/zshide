@@ -5,7 +5,7 @@ has_repo=$response
 
 has_wdir=$(test -d $pd && print $pd)
 if [[ -z $has_repo && -z $has_wdir ]]; then
-    err "E: no such project: $ZI_PROJECT_NAME"
+    err "no such project: $ZI_PROJECT_NAME"
     exit 1
 fi
 print "Warning! You are about to delete $ZI_PROJECT_NAME!"
