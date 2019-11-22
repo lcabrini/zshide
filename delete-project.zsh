@@ -1,5 +1,8 @@
 pd=$ZI_PROJECTS_DIR/$ZI_PROJECT_NAME
-has_repo=$(. $ZI_HOME/github-has-repo.zsh)
+#has_repo=$(. $ZI_HOME/github-has-repo.zsh)
+. $ZI_HOME/github-has-repo.zsh
+has_repo=$response
+
 has_wdir=$(test -d $pd && print $pd)
 if [[ -z $has_repo && -z $has_wdir ]]; then
     err "E: no such project: $ZI_PROJECT_NAME"
