@@ -43,6 +43,17 @@ case $1 in
         . $ZI_HOME/delete-project.zsh
         ;;
 
+    (rs)
+        key=$2
+        read_setting $key
+        print ${(P)key}
+        ;;
+
+    (ws)
+        key=$2
+        val=$3
+        write_setting $key $val
+        ;;
 
     (*)
         print "E: unknown command: $1"
