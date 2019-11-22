@@ -1,6 +1,10 @@
 #! /bin/zsh
 
-# The main zshide script. This will call other scripts.
+# zi: a Zsh+Vim IDE
+#
+# This is the main zshide script. It is used to interact with the rest of
+# the IDE.
+#
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
 autoload -U colors
