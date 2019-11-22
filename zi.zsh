@@ -43,15 +43,6 @@ case $1 in
         . $ZI_HOME/delete-project.zsh
         ;;
 
-    (t)
-        #. $ZI_HOME/github-whoami.zsh
-        #print $(read_setting GITHUB_URL)
-        read_setting GITHUB_LOGIN
-        print "GitHub URL: $GITHUB_LOGIN"
-        #write_setting "TEST_KEY" "foobarnicous"
-        #print $(read_setting TEST_KEY)
-        exit $E_OK
-        ;;
 
     (*)
         print "E: unknown command: $1"
