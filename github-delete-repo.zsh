@@ -15,4 +15,4 @@ response=$(eval "$CURL -X DELETE $HEADERS $url")
 # XXX: repository list has changed, so refresh it. Is this a good idea?
 rm $ZI_HOME/github-repos.json
 . $ZI_HOME/github-get-repos.zsh #& #> /dev/null 2>&1 &
-info "refreshing local GitHub repo list"
+#info "refreshing local GitHub repo list"

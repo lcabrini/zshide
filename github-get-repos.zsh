@@ -31,6 +31,7 @@ if [[ ! -f $repos ]]; then
     #auth="Authorization: token $token"
     #accept="Accept: application/vnd.github.v3+json"
 
+    info "Refreshing local GitHub repository list"
     url="https://api.github.com/user/repos"
     eval "$CURL $HEADERS $url > $repos"
 fi
