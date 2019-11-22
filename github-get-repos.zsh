@@ -1,21 +1,21 @@
-pid_file=$ZI_HOME/github-get-repos.pid
-p=$(ps ax | grep $0 | grep --invert-match grep | awk '{ print $1}')
-. $ZI_HOME/github.zsh
+#pid_file=$ZI_HOME/github-get-repos.pid
+#p=$(ps ax | grep $0 | grep --invert-match grep | awk '{ print $1}')
+#. $ZI_HOME/github.zsh
 
-if [[ -f $pid_file ]]; then
-    pid=$(cat $pid_file)
-
-    if [[ $pid != $p ]]; then
-        warn "W: PIDs don't match"
-    else
-        while [[ -f $pid_file ]]; do
-            sleep 1
-        done
-        exit 1
-    fi
-fi
-
-print $$ > $pid_file
+#if [[ -f $pid_file ]]; then
+#    pid=$(cat $pid_file)
+#
+#    if [[ $pid != $p ]]; then
+#        warn "W: PIDs don't match"
+#    else
+#        while [[ -f $pid_file ]]; do
+#            sleep 1
+#        done
+#        exit 1
+#    fi
+#fi
+#
+#print $$ > $pid_file
 
 repos=$ZI_HOME/github-repos.json
 if [[ -f $repos ]]; then
@@ -36,4 +36,4 @@ if [[ ! -f $repos ]]; then
     eval "$CURL $HEADERS $url > $repos"
 fi
 
-rm $pid_file
+#rm $pid_file
