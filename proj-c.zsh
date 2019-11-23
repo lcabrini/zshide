@@ -5,20 +5,6 @@ if [[ -z $PROJECT_NAME ]]; then
     exit 1
 fi
 
-cat > $PROJECT_PATH/main.c <<EOF
-#include <stdio.h>
-
-int main(int argc, char *argv[])
-{
-    return 0;
-}
-EOF
-
-cat > $PROJECT_PATH/Makefile <<EOF
-CC = gcc
-
-all: $PROJECT_NAME
-
-$PROJECT_NAME:
-EOF
-
+t=$ZI_HOME/t
+cp $t/main.c $PROJECT_PATH
+sed -e "s/@PROJECT_NAME@/$PROJECT_NAME/g" $t/Makefile > $PROJECT_PATH/Makefile

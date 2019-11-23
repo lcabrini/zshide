@@ -1,0 +1,5 @@
+CC = gcc
+
+all: @PROJECT_NAME@
+
+@PROJECT_NAME@:
