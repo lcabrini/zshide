@@ -10,6 +10,10 @@ err() {
     print "$fg[red]E: $1$reset_color" > /dev/stderr
 }
 
+filemsg() {
+    print "  creating file $fg[green]$1$reset_color" > /dev/stderr
+}
+
 yesno() {
     p=$1
     while [[ 1 ]]; do

@@ -6,5 +6,7 @@ if [[ -z $PROJECT_NAME ]]; then
 fi
 
 t=$ZI_HOME/t
+filemsg main.c
 cp $t/main.c $PROJECT_PATH
+filemsg Makefile
 sed -e "s/@PROJECT_NAME@/$PROJECT_NAME/g" $t/Makefile > $PROJECT_PATH/Makefile
