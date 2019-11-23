@@ -11,7 +11,7 @@ err() {
 }
 
 filemsg() {
-    print "  creating file $fg[green]$1$reset_color" > /dev/stderr
+    print "    ... creating file $fg[green]$1$reset_color" > /dev/stderr
 }
 
 yesno() {
