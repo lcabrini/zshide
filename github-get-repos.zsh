@@ -1,6 +1,6 @@
 #pid_file=$ZI_HOME/github-get-repos.pid
 #p=$(ps ax | grep $0 | grep --invert-match grep | awk '{ print $1}')
-#. $ZI_HOME/github.zsh
+. $ZI_HOME/github.zsh
 
 #if [[ -f $pid_file ]]; then
 #    pid=$(cat $pid_file)
