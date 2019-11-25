@@ -33,7 +33,7 @@ if [[ ! -f $repos ]]; then
 
     info "Refreshing local GitHub repository list"
     url="https://api.github.com/user/repos"
-    curl $CURLOPTS $HEADERS $url > $repos
+    eval "$CURL $HEADERS $url > $repos"
 fi
 
 #rm $pid_file
