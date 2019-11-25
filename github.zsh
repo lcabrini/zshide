@@ -12,6 +12,6 @@ HEADERS="-H '$auth' -H '$accept'"
 URL="https://api.github.com"
 
 # XXX: for now only used by github related functions. Move if needed.
-CURL="curl -s"
+CURLOPTS="-s"
 
 . $ZI_HOME/github-whoami.zsh
