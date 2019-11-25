@@ -1,5 +1,18 @@
 CC = gcc
+CFLAGS = -Wall -g
+SRCS = $(wildcard *.c)
+OBJS = $(SRCS:.c=.o)
+MAIN = @PROJECT_NAME@
 
-all: @PROJECT_NAME@
+.PHONY: clean
 
-@PROJECT_NAME@:
+all: $(MAIN)
+
+$(MAIN): $(OBJS)
+	$(CC) -o $(MAIN) $(OBJS)
+
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(OBJS) $(MAIN)
