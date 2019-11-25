@@ -25,7 +25,7 @@ if [[ -f $repos ]]; then
         rm -f $repos
     else
         cat $repos | jq . > /dev/null 2>&1
-        if [[ $? -ne 0 ]];
+        if [[ $? -ne 0 ]]; then
             rm -f $repos
         fi
     fi
