@@ -19,22 +19,33 @@ read -rd '' repodata <<EOF
 }
 EOF
 repodata=$(print $repodata | tr -d '\n')
-#response=$(eval "$CURL $HEADERS -d '$repodata' $url")
-
-response=$(curl $=CURLOPTS $=HEADERS -d "$repodata" $url > ~/log 2>&1)
-ret=$?
-if [[ $ret -gt 0 ]]; then
-    err "Unable to create repo on GitHub."
+response=$(eval "$CURL $HEADERS -d '$repodata' $url")
+json=$(print $response | sed '1,/^\s*$/d')
+#print $response | grep "^Status:"
+state=$(print $response | grep ^Status: | awk '{ print $2 }')
+if [[ $state -ne 201 ]]; then
+    err "github repo creation failed"
     exit 1
 fi
+#print STATE IS: $state
+#print JSON: $json
+#exit
+#message=$(print $response | jq '.message')
+#if [[ -n $(print $response | jq '.message') ]]; then
+#    err "something fooey happened: $message"
+#    exit 1
+#fi
+
+#response=$(curl $=CURLOPTS $=HEADERS -d "$repodata" $url > ~/log 2>&1)
+#curl -s -H $auth -d "$repodata" $url
+#exit 0
+#ret=$?
+#if [[ $ret -gt 0 ]]; then
+#    err "Unable to create repo on GitHub."
+#    exit 1
+#fi
 
 REPO_URL=$(print $response | jq '.ssh_url' | tr -d '"')
-ret=$?
-if [[ $ret -gt 0 ]]; then
-    err "Foobar happened"
-    exit 1
-fi
-
 info "created GitHub repo $PROJECT_NAME"
 (cd $PROJECTS_DIR && git clone $REPO_URL > /dev/null 2>&1)
 info "cloned $PROJECT_NAME into $PROJECTS_DIR/$PROJECT_NAME"
