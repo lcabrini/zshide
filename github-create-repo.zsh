@@ -19,7 +19,8 @@ read -rd '' repodata <<EOF
 }
 EOF
 repodata=$(print $repodata | tr -d '\n')
-response=$(eval "$CURL $SHEADERS -d '$repodata' $url")
+#response=$(eval "$CURL $HEADERS -d '$repodata' $url")
+response=$(curl $=CURLOPTS $=HEADERS -d "$repodata" $url)
 ret=$?
 if [[ $ret -gt 0 ]]; then
     err "Unable to create repo on GitHub."
