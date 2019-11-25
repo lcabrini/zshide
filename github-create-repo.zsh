@@ -21,12 +21,18 @@ EOF
 repodata=$(print $repodata | tr -d '\n')
 response=$(eval "$CURL $SHEADERS -d '$repodata' $url")
 ret=$?
-if [[ $ret -gt 0 ]]; 
+if [[ $ret -gt 0 ]]; then
     err "Unable to create repo on GitHub."
     exit 1
 fi
 
 REPO_URL=$(print $response | jq '.ssh_url' | tr -d '"')
+ret=$?
+if [[ $ret -gt 0 ]]; then
+    err "Foobar happened"
+    exit 1
+fi
+
 info "created GitHub repo $PROJECT_NAME"
 (cd $PROJECTS_DIR && git clone $REPO_URL > /dev/null 2>&1)
 info "cloned $PROJECT_NAME into $PROJECTS_DIR/$PROJECT_NAME"
