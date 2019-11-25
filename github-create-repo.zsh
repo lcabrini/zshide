@@ -46,7 +46,7 @@ fi
 #    exit 1
 #fi
 
-REPO_URL=$(print $response | jq '.ssh_url' | tr -d '"')
+REPO_URL=$(print $json | jq '.ssh_url' | tr -d '"')
 info "created GitHub repo $PROJECT_NAME"
 (cd $PROJECTS_DIR && git clone $REPO_URL > /dev/null 2>&1)
 info "cloned $PROJECT_NAME into $PROJECTS_DIR/$PROJECT_NAME"
