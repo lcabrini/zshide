@@ -19,7 +19,13 @@ read -rd '' repodata <<EOF
 }
 EOF
 repodata=$(print $repodata | tr -d '\n')
-response=$(eval "$CURL $HEADERS -d '$repodata' $url")
+response=$(eval "$CURL $SHEADERS -d '$repodata' $url")
+status=$?
+if [[ $status -gt 0 ]]; 
+    err "Unable to create repo on GitHub."
+    exit 1
+fi
+
 REPO_URL=$(print $response | jq '.ssh_url' | tr -d '"')
 info "created GitHub repo $PROJECT_NAME"
 (cd $PROJECTS_DIR && git clone $REPO_URL > /dev/null 2>&1)
