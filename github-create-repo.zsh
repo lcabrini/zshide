@@ -19,7 +19,7 @@ read -rd '' repodata <<EOF
 }
 EOF
 repodata=$(print $repodata | tr -d '\n')
-response=$(curl $CURLOPTS $HEADERS -d "$repodata" $url)
+response=$(curl $CURLOPTS $HEADERS -d "$repodata" $url > ~/log.txt 2>&1)
 REPO_URL=$(print $response | jq '.ssh_url' | tr -d '"')
 info "created GitHub repo $PROJECT_NAME"
 (cd $PROJECTS_DIR && git clone $REPO_URL > /dev/null 2>&1)
