@@ -23,6 +23,11 @@ if [[ -f $repos ]]; then
     ts=$(stat -c "%Y" $repos)
     if [[ $(( $now - $ts )) -gt $(( 3600 * 10 )) ]]; then
         rm -f $repos
+    else
+        cat $repos | jq . > /dev/null 2>&1
+        if [[ $? -ne 0 ]];
+            rm -f $repos
+        fi
     fi
 fi
 
