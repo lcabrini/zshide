@@ -7,7 +7,7 @@ fi
 
 t=$ZI_HOME/t
 filemst main.h
-cp $t/h-main.c $PROJECT_PATH
+cp $t/c-main.h $PROJECT_PATH
 filemsg main.c
 cp $t/c-main.c $PROJECT_PATH
 filemsg Makefile
