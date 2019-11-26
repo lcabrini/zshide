@@ -18,33 +18,15 @@ read -rd '' repodata <<EOF
 "auto_init": true
 }
 EOF
+
 repodata=$(print $repodata | tr -d '\n')
 response=$(eval "$CURL $HEADERS -d '$repodata' $url")
 json=$(print $response | sed '1,/^\s*$/d')
-#print $response | grep "^Status:"
 state=$(print $response | grep ^Status: | awk '{ print $2 }')
 if [[ $state -ne 201 ]]; then
     err "github repo creation failed"
     exit 1
 fi
-#
-#print STATE IS: $state
-#print JSON: $json
-#exit
-#message=$(print $response | jq '.message')
-#if [[ -n $(print $response | jq '.message') ]]; then
-#    err "something fooey happened: $message"
-#    exit 1
-#fi
-
-#response=$(curl $=CURLOPTS $=HEADERS -d "$repodata" $url > ~/log 2>&1)
-#curl -s -H $auth -d "$repodata" $url
-#exit 0
-#ret=$?
-#if [[ $ret -gt 0 ]]; then
-#    err "Unable to create repo on GitHub."
-#    exit 1
-#fi
 
 REPO_URL=$(print $json | jq '.ssh_url' | tr -d '"')
 info "created GitHub repo $PROJECT_NAME"
@@ -57,9 +39,6 @@ cat >> $PROJECTS_DIR/$PROJECT_NAME/.gitignore <<EOF
 EOF
 info "applied general .gitignore"
 
-# XXX: repository list has changed, so refresh it. Is this a good idea?
 rm $ZI_HOME/github-repos.json
-. $ZI_HOME/github-get-repos.zsh #& #> /dev/null 2>&1 &
-#info "refreshing local GitHub repo list"
+. $ZI_HOME/github-get-repos.zsh
 
-#print "SSH_URL=$ssh_url" >> $ZI_STATE
