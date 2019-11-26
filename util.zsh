@@ -70,3 +70,13 @@ write_setting() {
         mv $tmp $rc
     fi
 }
+
+delete_setting() {
+    key=$1
+    rc=$ZI_HOME/zshiderc
+    if [[ -f $rc && -n $(grep "^$key=" $rc) ]]; then
+        tmp=$(mktemp -t zshide-$USER.XXXXX)
+        grep --invert-match "^$key=" $rc > $tmp
+        mv $tmp $rc
+    fi
+}

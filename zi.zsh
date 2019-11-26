@@ -67,6 +67,11 @@ case $1 in
         write_setting $key $val
         ;;
 
+    (ds)
+        key=$2
+        delete_setting $key
+        ;;
+
     (up)
         . $ZI_HOME/update-zshide.zsh
         ;;
