@@ -32,7 +32,7 @@ if [[ $# -lt 1 ]]; then
 fi
 
 ZI_HOME=@ZI_HOME@
-PROJECTS_DIR=$HOME/Git
+PROJECTS_DIR=$HOME/git
 
 . $ZI_HOME/util.zsh
 
