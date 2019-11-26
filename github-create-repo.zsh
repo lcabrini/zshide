@@ -23,10 +23,15 @@ repodata=$(print $repodata | tr -d '\n')
 response=$(eval "$CURL $HEADERS -d '$repodata' $url")
 json=$(print $response | sed '1,/^\s*$/d')
 state=$(print $response | grep ^Status: | awk '{ print $2 }')
-if [[ $state -ne 201 ]]; then
-    err "github repo creation failed"
-    exit 1
-fi
+case $state in
+    (201)
+        info "GitHub repo $PROJECT_NAME created."
+        ;;
+
+    (*)
+        err "GitHub repo creation failed"
+        ;;
+esac
 
 REPO_URL=$(print $json | jq '.ssh_url' | tr -d '"')
 info "created GitHub repo $PROJECT_NAME"
