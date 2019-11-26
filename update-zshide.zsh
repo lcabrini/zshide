@@ -6,6 +6,7 @@ info "git cloning zshide"
 git clone $zi_url > /dev/null 2>&1
 cd zshide
 info "updating zshide"
-make > /dev/null 2>&1
+#make > /dev/null 2>&1
+./install.zsh
 
 rm -rf $workdir
