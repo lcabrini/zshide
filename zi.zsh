@@ -31,7 +31,7 @@ if [[ $# -lt 1 ]]; then
     exit $E_COMMAND
 fi
 
-ZI_HOME=$HOME/.zshide
+ZI_HOME=@ZI_HOME@
 PROJECTS_DIR=$HOME/Git
 
 . $ZI_HOME/util.zsh
