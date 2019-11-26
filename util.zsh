@@ -60,6 +60,7 @@ write_setting() {
     key=$1
     val=$2
     rc=$ZI_HOME/zshiderc
+    test -f $rc || touch $rc
     if [[ -z $(grep "^$key=" $rc) ]]; then
         print "$key=$val" >> $rc
     else
