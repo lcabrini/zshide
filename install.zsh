@@ -2,7 +2,8 @@
 
 # zshide: the Zsh IDE
 #
-# This installs zshide. It should not depend on any other script.
+# This script installs zshide. It should not depend on any other script
+# and as far as possible only depend on standard tools.
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
