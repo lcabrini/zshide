@@ -1,3 +1,14 @@
+# zshide: the Zsh IDE
+#
+# Creates a repository on GitHub, clones it and updates .gitignore. It is
+# called from the np (new project) command.
+#
+# Requirements:
+#    GITHUB_TOKEN (zshiderc)
+#    PROJECT_NAME
+#
+# Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
+
 if [[ -z $PROJECT_NAME ]]; then
     err "no repository name"
     exit 1
