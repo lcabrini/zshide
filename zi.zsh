@@ -50,6 +50,11 @@ case $1 in
         . $ZI_HOME/delete-project.zsh
         ;;
 
+    (et)
+        TPLNAME=$2
+        . $ZI_HOME/edit-template.zsh
+        ;;
+
     (rs)
         key=$2
         read_setting $key
