@@ -6,6 +6,8 @@ fi
 . $ZI_HOME/github.zsh
 
 url="$URL/user/repos"
+
+# TODO: several (all?) of these should be configurable
 read -rd '' repodata <<EOF
 {
 "name": "$PROJECT_NAME",
@@ -38,6 +40,7 @@ info "created GitHub repo $PROJECT_NAME"
 (cd $PROJECTS_DIR && git clone $REPO_URL > /dev/null 2>&1)
 info "cloned $PROJECT_NAME into $PROJECTS_DIR/$PROJECT_NAME"
 
+# TODO: how can I get a project types .gitignore from GitHub?
 cat >> $PROJECTS_DIR/$PROJECT_NAME/.gitignore <<EOF
 # Editor
 .*.swp
