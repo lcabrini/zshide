@@ -27,6 +27,7 @@ for f in *.zsh; do
         (zi.zsh|install.zsh)
             ;;
         (*)
+            print Copying $f
             cp $f $ZI_HOME
             ;;
     esac
@@ -40,6 +41,7 @@ for f in *; do
     if [[ -n $(grep "^${f}$" $MODLIST) ]]; then
         print "not copying $f, it has been modified"
     else
+        print Copying $f > /dev/stderr
         cp $f $TPLDIR
     fi
 done
