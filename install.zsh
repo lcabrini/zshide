@@ -1,5 +1,11 @@
 #! /bin/zsh
 
+# zshide: the Zsh IDE
+#
+# This installs zshide. It should not depend on any other script.
+#
+# Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
+
 # Installation locations. You can change to suit your preferences.
 PREFIX=$HOME
 ZI_HOME=$PREFIX/.zshide
