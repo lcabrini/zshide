@@ -6,28 +6,45 @@ ZI_HOME=$PREFIX/.zshide
 BINDIR=$PREFIX/bin
 TPLDIR=$ZI_HOME/t
 
+autoload -U colors
+colors
+
+white=$fg[white]
+red=$fg[red]
+yellow=$fg[yellow]
+green=$fg[green]
+reset=$reset_color
+
+info() { print "I: $white$1$reset" > /dev/stderr }
+warn() { print "W: $yellow$1$reset" > /dev/stderr }
+err() { print "E: $red$1$reset" > /dev/stderr }
+inst() { print "    ... installing $green$1$reset" }
+
 if [[ ! -d $ZI_HOME ]]; then
-    print "$ZI_HOME does not exist, creating it"
+    info "$ZI_HOME does not exist, creating it"
     mkdir $ZI_HOME
 fi
 
 if [[ ! -d $BINDIR ]]; then
+    info "$BINDIR does not exist, creating it"
     mkdir $BINDIR
 fi
 
 if [[ ! -d $TPLDIR ]]; then
+    info "$TPLDIR does not exist, creating it"
     mkdir $TPLDIR
 fi
 
 sed "s|@ZI_HOME@|$ZI_HOME|" zi.zsh > $BINDIR/zi
 chmod +x $BINDIR/zi
 
+info "Installing zshide scripts"
 for f in *.zsh; do
     case $f in
         (zi.zsh|install.zsh)
             ;;
         (*)
-            print Copying $f
+            inst $f
             cp $f $ZI_HOME
             ;;
     esac
@@ -36,12 +53,13 @@ done
 MODLIST=$TPLDIR/.modified
 test -f $MODLIST || touch $MODLIST
 
+info "Installing templates"
 cd t
 for f in *; do
     if [[ -n $(grep "^${f}$" $MODLIST) ]]; then
-        print "not copying $f, it has been modified"
+        warn "not copying $f, it has been modified"
     else
-        print Copying $f > /dev/stderr
+        inst $f
         cp $f $TPLDIR
     fi
 done
