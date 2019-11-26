@@ -37,42 +37,42 @@ PROJECTS_DIR=$HOME/git
 . $ZI_HOME/util.zsh
 
 case $1 in 
-    (np)
+    (np|new-project)
         PROJECT_TYPE=$2
         PROJECT_NAME=$3
         PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
         . $ZI_HOME/new-project.zsh
         ;;
 
-    (dp)
+    (dp|delete-project)
         PROJECT_NAME=$2
         PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
         . $ZI_HOME/delete-project.zsh
         ;;
 
-    (et)
+    (et|edit-template)
         TPLNAME=$2
         . $ZI_HOME/edit-template.zsh
         ;;
 
-    (rs)
+    (rs|read-setting)
         key=$2
         read_setting $key
         print ${(P)key}
         ;;
 
-    (ws)
+    (ws|write-setting)
         key=$2
         val=$3
         write_setting $key $val
         ;;
 
-    (ds)
+    (ds|delete-setting)
         key=$2
         delete_setting $key
         ;;
 
-    (up)
+    (up|update)
         . $ZI_HOME/update-zshide.zsh
         ;;
 
