@@ -30,7 +30,7 @@ on_chpwd() {
             #print "project change"
             if [[ -n $CURRENT_PROJECT ]]; then
                 if [[ -f $CURRENT_PROJECT_PATH/.zshide/leave.zsh ]]; then
-                    zsh $CURRENT_PROJECT_PATH/.zshide/leave.zsh
+                    . $CURRENT_PROJECT_PATH/.zshide/leave.zsh
                 fi
             fi
             CURRENT_PROJECT=$current
@@ -41,7 +41,8 @@ on_chpwd() {
 
             if [[ -f $CURRENT_PROJECT_PATH/.zshide/enter.zsh ]]; then
                 #print "start.zsh found"
-                zsh $CURRENT_PROJECT_PATH/.zshide/enter.zsh
+            
+                . $CURRENT_PROJECT_PATH/.zshide/enter.zsh
             else
                 #print "no start.zsh found"
             fi
