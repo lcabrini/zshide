@@ -73,7 +73,8 @@ done
 cd ..
 
 info "Setting up environment"
-cp zshrc $ZI_HOME
+sed "s|@ZI_HOME@|$ZI_HOME|" zshrc > $ZI_HOME/zshrc
+#cp zshrc $ZI_HOME
 test -f $HOME/.zshrc || touch $HOME/.zshrc
 zshide_string="added by zshide"
 zshrc_updated=$(grep "^# $zshide_string" $HOME/.zshrc)
