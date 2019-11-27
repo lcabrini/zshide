@@ -15,3 +15,4 @@ sed -e "s/@PROJECT_NAME@/$PROJECT_NAME/g" $t/c-Makefile > $PROJECT_PATH/Makefile
 
 cp $t/c-enter.zsh $PROJECT_PATH/.zshide/enter.zsh
 cp $t/c-leave.zsh $PROJECT_PATH/.zshide/leave.zsh
+cp $t/c-precmd.zsh $PROJECT_PATH/.zshide/precmd.zsh
