@@ -32,8 +32,11 @@ read -rd '' repodata <<EOF
 }
 EOF
 
+print pass 1
 repodata=$(print $repodata | tr -d '\n')
+print pass 2
 response=$(eval "$CURL $HEADERS -d '$repodata' $url")
+print pass 3
 json=$(print $response | sed '1,/^\s*$/d')
 state=$(print $response | grep ^Status: | awk '{ print $2 }')
 case $state in
