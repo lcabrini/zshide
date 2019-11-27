@@ -5,11 +5,15 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+export ZI_HOME=@ZI_HOME@
 export PROJECTS_HOME=$HOME/git
 export CURRENT_PROJECT=
 export CURRENT_PROJECT_PATH=
 
+. $ZI_HOME/util.zsh
+
 init_zshide_meta() {
+    info "initializing zshide meta directory"
     mkdir $CURRENT_PROJECT_PATH/.zshide            
     touch $CURRENT_PROJECT_PATH/.zshide/enter.zsh > /dev/null 2>&1
     touch $CURRENT_PROJECT_PATH/.zshide/leave.zsh > /dev/null 2>&1
