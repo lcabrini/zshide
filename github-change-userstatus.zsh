@@ -2,8 +2,9 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
-ZI_HOME=~/.zshide
-GITHUB_STATUS="working on zshide"
+#ZI_HOME=~/.zshide
+#GITHUB_STATUS="working on zshide"
+GITHUB_STATUS=$1
 
 if [[ -z $GITHUB_STATUS ]]; then
     err "no status message"
@@ -33,5 +34,5 @@ url=$URL/graphql
 data=$(print $graphql | tr -d '\n')
 print $data
 #exit
-response=$(eval "$CURL $HEADERS -X POST -d '$data' $url")
-print $response
+response=$(eval "$CURL $HEADERS -X POST -d '$data' $url" > /dev/null 2>&1)
+#print $response
