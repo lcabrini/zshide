@@ -13,7 +13,7 @@ on_chpwd() {
     if [[ $PWD == $PROJECTS_HOME/* ]]; then
         current=$(print ${PWD#$PROJECTS_HOME/} | cut -d'/' -f1)
         if [[ $current != $CURRENT_PROJECT ]]; then
-            print "project change"
+            #print "project change"
             if [[ -n $CURRENT_PROJECT ]]; then
                 if [[ -f $CURRENT_PROJECT_PATH/.zshide/leave.zsh ]]; then
                     zsh $CURRENT_PROJECT_PATH/.zshide/leave.zsh
@@ -22,14 +22,14 @@ on_chpwd() {
             CURRENT_PROJECT=$current
             CURRENT_PROJECT_PATH=$PROJECTS_HOME/$CURRENT_PROJECT
             if [[ -f $CURRENT_PROJECT_PATH/.zshide/enter.zsh ]]; then
-                print "start.zsh found"
+                #print "start.zsh found"
                 zsh $CURRENT_PROJECT_PATH/.zshide/enter.zsh
             else
-                print "no start.zsh found"
+                #print "no start.zsh found"
             fi
         fi
     elif [[ -n $CURRENT_PROJECT ]]; then
-        print "not in a project directory"
+        #print "not in a project directory"
         if [[ -n $CURRENT_PROJECT ]]; then
             if [[ -f $CURRENT_PROJECT_PATH/.zshide/leave.zsh ]]; then
                 zsh $CURRENT_PROJECT_PATH/.zshide/leave.zsh
