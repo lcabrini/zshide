@@ -62,7 +62,7 @@ on_chpwd() {
 on_preexec() {
     if [[ -n $CURRENT_PROJECT ]]; then
         if [[ -f $CURRENT_PROJECT_PATH/.zshide/precmd.zsh ]]; then
-            zsh $CURRENT_PROJECT_PATH/.zshide/precmd.zsh ]]
+            zsh $CURRENT_PROJECT_PATH/.zshide/precmd.zsh $1
         fi
     fi
 }
