@@ -50,7 +50,7 @@ on_chpwd() {
         #print "not in a project directory"
         if [[ -n $CURRENT_PROJECT ]]; then
             if [[ -f $CURRENT_PROJECT_PATH/.zshide/leave.zsh ]]; then
-                zsh $CURRENT_PROJECT_PATH/.zshide/leave.zsh
+                . $CURRENT_PROJECT_PATH/.zshide/leave.zsh
             fi
         fi
 
@@ -62,7 +62,7 @@ on_chpwd() {
 on_preexec() {
     if [[ -n $CURRENT_PROJECT ]]; then
         if [[ -f $CURRENT_PROJECT_PATH/.zshide/precmd.zsh ]]; then
-            zsh $CURRENT_PROJECT_PATH/.zshide/precmd.zsh $1
+            . $CURRENT_PROJECT_PATH/.zshide/precmd.zsh $1
         fi
     fi
 }
