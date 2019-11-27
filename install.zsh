@@ -70,3 +70,20 @@ for f in *; do
         cp $f $TPLDIR
     fi
 done
+cd ..
+
+info "Setting up environment"
+cp zshrc $ZI_HOME
+test -f $HOME/.zshrc || touch $HOME/.zshrc
+zshide_string="added by zshide"
+zshrc_updated=$(grep "^# $zshide_string" $HOME/.zshrc)
+
+IFS= read -rd '' zshrc <<EOF
+
+# $zshide_string
+test -f $ZI_HOME/zshrc && . $ZI_HOME/zshrc
+EOF
+
+if [[ -z $zshrc_updated ]]; then
+    print "$zshrc" >> $HOME/.zshrc
+fi
