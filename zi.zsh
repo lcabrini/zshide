@@ -7,9 +7,6 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
-autoload -U colors
-colors
-
 E_OK=0
 E_COMMAND=1
 E_PARAM=2

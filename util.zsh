@@ -1,3 +1,6 @@
+autoload -U colors
+colors
+
 info() {
     print "$fg[green]I: $1$reset_color" > /dev/stderr
 }
