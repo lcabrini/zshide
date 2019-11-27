@@ -1,4 +1,4 @@
-# zshide: the Zsh IDE-H 'Authorization: bearer aea18f7a2cb434f569d5560c7662179ffd8e667c'
+# zshide: the Zsh IDE
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
