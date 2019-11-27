@@ -17,6 +17,7 @@ init_zshide_meta() {
     mkdir $CURRENT_PROJECT_PATH/.zshide            
     touch $CURRENT_PROJECT_PATH/.zshide/enter.zsh > /dev/null 2>&1
     touch $CURRENT_PROJECT_PATH/.zshide/leave.zsh > /dev/null 2>&1
+    touch $CURRENT_PROJECT_PATH/.zshide/precmd.zsh > /dev/null 2>&1
     git add $CURRENT_PROJECT_PATH/.zshide > /dev/null 2>&1
     git commit -m "Initialized zshide meta directory" > /dev/null 2>&1
     git push > /dev/null 2>&1
@@ -58,5 +59,14 @@ on_chpwd() {
     fi
 }
 
+on_preexec() {
+    if [[ -n $CURRENT_PROJECT ]]; then
+        if [[ -f $CURRENT_PROJECT_PATH/.zshide/precmd.zsh ]]; then
+            zsh $CURRENT_PROJECT_PATH/.zshide/precmd.zsh ]]
+        fi
+    fi
+}
+
 autoload -U add-zsh-hook
 add-zsh-hook chpwd on_chpwd
+add-zsh-hook preexec on_preexec
