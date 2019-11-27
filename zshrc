@@ -5,6 +5,8 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+setopt LOCAL_OPTIONS NO_NOTIFY NO_MONITOR
+
 export ZI_HOME=@ZI_HOME@
 export PROJECTS_HOME=$HOME/git
 export CURRENT_PROJECT=
@@ -42,7 +44,7 @@ on_chpwd() {
             if [[ -f $CURRENT_PROJECT_PATH/.zshide/enter.zsh ]]; then
                 #print "start.zsh found"
                 m="Working on $CURRENT_PROJECT"
-                . $ZI_HOME/github-change-userstatus.zsh $m
+                . $ZI_HOME/github-change-userstatus.zsh $m &
                 . $CURRENT_PROJECT_PATH/.zshide/enter.zsh
             else
                 #print "no start.zsh found"
