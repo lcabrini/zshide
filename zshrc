@@ -9,6 +9,15 @@ export PROJECTS_HOME=$HOME/git
 export CURRENT_PROJECT=
 export CURRENT_PROJECT_PATH=
 
+init_zshide_meta() {
+    mkdir $CURRENT_PROJECT_PATH/.zshide            
+    touch $CURRENT_PROJECT_PATH/.zshide/enter.zsh > /dev/null 2>&1
+    touch $CURRENT_PROJECT_PATH/.zshide/leave.zsh > /dev/null 2>&1
+    git add $CURRENT_PROJECT_PATH/.zshide > /dev/null 2>&1
+    git commit -m "Initialized zshide meta directory" > /dev/null 2>&1
+    git push > /dev/null 2>&1
+}
+
 on_chpwd() {
     if [[ $PWD == $PROJECTS_HOME/* ]]; then
         current=$(print ${PWD#$PROJECTS_HOME/} | cut -d'/' -f1)
@@ -21,6 +30,10 @@ on_chpwd() {
             fi
             CURRENT_PROJECT=$current
             CURRENT_PROJECT_PATH=$PROJECTS_HOME/$CURRENT_PROJECT
+            if [[ ! -d $CURRENT_PROJECT_PATH/.zshide ]]; then
+                init_zshide_meta                
+            fi
+
             if [[ -f $CURRENT_PROJECT_PATH/.zshide/enter.zsh ]]; then
                 #print "start.zsh found"
                 zsh $CURRENT_PROJECT_PATH/.zshide/enter.zsh
