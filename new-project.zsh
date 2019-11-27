@@ -23,6 +23,9 @@ fi
 info "Creating project $PROJECT_NAME"
 . $ZI_HOME/github-create-repo.zsh
 #export ZI_SSH_URL=$(cat $ZI_STATE | grep SSH_URL | cut -d'=' -f2)
+
+mkdir $PROJECT_PATH/.zshide
+
 . $ZI_HOME/proj-$PROJECT_TYPE.zsh
 cd $PROJECTS_DIR/$PROJECT_NAME
 git add .
