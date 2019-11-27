@@ -32,7 +32,7 @@ EOF
 #exit
 url=$URL/graphql
 data=$(print $graphql | tr -d '\n')
-print $data
+#print $data
 #exit
-response=$(eval "$CURL $HEADERS -X POST -d '$data' $url" > /dev/null 2>&1)
+response=$(eval "$CURL $HEADERS -X POST -d '$data' $url")
 #print $response
