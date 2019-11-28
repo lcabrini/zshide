@@ -64,6 +64,10 @@ case $1 in
         write_setting $key $val
         ;;
 
+    (ls|list-settings)
+        cat $ZI_HOME/zshiderc
+        ;;
+
     (ds|delete-setting)
         key=$2
         delete_setting $key
