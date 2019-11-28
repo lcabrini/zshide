@@ -28,6 +28,8 @@ for src in main.go; do
     fi
 done
 
+go mod init $REPO_URL
+
 for hook in enter leave precmd; do
     if [[ -f $t/go-$hook.zsh ]]; then
         cp $t/go-$hook.zsh $PROJECT_PATH/$hook.zsh
