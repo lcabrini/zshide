@@ -28,7 +28,8 @@ for src in main.go; do
     fi
 done
 
-go mod init $REPO_URL
+
+go mod init github.com/$GITHUB_LOGIN/$PROJECT_NAME
 
 for hook in enter leave precmd; do
     if [[ -f $t/go-$hook.zsh ]]; then
