@@ -41,6 +41,7 @@ for dep in jq; do
     fi
 done
 
+# TODO: message is Fedora specific.
 read -rd '' instmsg <<EOF
 You are missing some required packages. If you have sudo access on this
 system, they can be installed right now.
@@ -63,6 +64,7 @@ if [[ -n $packages ]]; then
             ;;
 
         (y|yes)
+            # TODO: Fedora specific
             sudo dnf install $packages
             res=$?
             if [[ $res -ne 0 ]]; then
