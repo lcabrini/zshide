@@ -1,3 +1,13 @@
+# zshide: the Zsh IDE
+#
+# This script is used to create a new project. 
+#
+# Requires:
+#   PROJECT_TYPE
+#   PROJECT_NAME
+#
+# Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
+
 if [[ -z $PROJECT_TYPE ]]; then
     err "no project type specified"
     exit $E_PARAM
