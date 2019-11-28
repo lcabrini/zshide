@@ -1,3 +1,10 @@
+# zshide: the Zsh IDE
+#
+# This script contains generic stuff that is useful for any function that
+# talks GitHub API (v3 or v4).
+#
+# Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
+
 . $ZI_HOME/util.zsh
 #token=$(cat $ZI_HOME/tokens.txt | grep github | cut -d'=' -f2)
 #token=$(read_setting GITHUB_TOKEN)
