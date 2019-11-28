@@ -1,3 +1,10 @@
+# zshide: the Zsh IDEO
+#
+# This script is used to set up a new Go project. It should be very 
+# generic.
+#
+# Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
+
 if [[ -z $PROJECT_NAME ]]; then
     err "no project name"
     exit 1
