@@ -28,13 +28,14 @@ for src in main.go; do
     fi
 done
 
-
+cd $PROJECT_PATH
 go mod init github.com/$GITHUB_LOGIN/$PROJECT_NAME
+cd -
 
 for hook in enter leave precmd; do
     if [[ -f $t/go-$hook.zsh ]]; then
-        cp $t/go-$hook.zsh $PROJECT_PATH/$hook.zsh
+        cp $t/go-$hook.zsh $PROJECT_PATH/.zshide/$hook.zsh
     else
-        cp $t/generic-$hook.zsh $PROJECT_PATH/$hook.zsh
+        cp $t/generic-$hook.zsh $PROJECT_PATH/.zshide/$hook.zsh
     fi
 done
