@@ -20,16 +20,62 @@ white=$fg[white]
 red=$fg[red]
 yellow=$fg[yellow]
 green=$fg[green]
-reset=$reset_color
+blue=$fg[blue]
+r=$reset_color
 
-info() { print "I: $white$1$reset" > /dev/stderr }
-warn() { print "W: $yellow$1$reset" > /dev/stderr }
-err() { print "E: $red$1$reset" > /dev/stderr }
-inst() { print "    ... installing $green$1$reset" }
+info() { print "I: ${white}$1$r" > /dev/stderr }
+warn() { print "W: ${yellow}$1$r" > /dev/stderr }
+err() { print "E: ${red}$1$r" > /dev/stderr }
+inst() { print "    ... installing ${green}$1$r" }
+deps() { print "    ... ${blue}$1$r ${green}SUCCESS$r" > /dev/stderr }
+depf() { print "    ... ${blue}$1$r ${red}FAIL$r" > /dev/stderr }
 
-if [[ ! -d $ZI_HOME ]]; then
-    info "$ZI_HOME does not exist, creating it"
-    mkdir $ZI_HOME
+packages=
+info "checking for dependencies"
+for dep in jq; do
+    if [[ -n $(whence $dep) ]]; then
+        deps $dep
+    else
+        depf $dep
+        packages="$dep $packages"
+    fi
+done
+
+read -rd '' instmsg <<EOF
+You are missing some required packages. If you have sudo access on this
+system, they can be installed right now.
+
+Otherwise you will need to manually install them with:
+  # dnf install $packages
+
+Do you want to procede to install (Y/N)?
+EOF
+
+if [[ -n $packages ]]; then
+    warn "required dependencies missing"
+    print $instmsg
+    read ans
+    ans=$(print $ans | tr A-Z a-z)
+    case $ans in
+        (n|no)
+            warn "aborting installation"
+            exit 1
+            ;;
+
+        (y|yes)
+            sudo dnf install $packages
+            res=$?
+            if [[ $res -ne 0 ]]; then
+                err "error installing dependencies"
+                exit 1
+            fi
+            ;;
+
+        (*)
+            err "unrecognized answer: $ans. Aborting ..."
+            exit 1
+            ;;
+    esac
 fi
 
 if [[ ! -d $BINDIR ]]; then
