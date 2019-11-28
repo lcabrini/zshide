@@ -3,6 +3,11 @@
 # This script is used to set up a new Go project. It should be very 
 # generic.
 #
+# Requirements:
+#   PROJECT_NAME
+#   PROJECT_PATH
+#   REPO_URL
+#
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
 if [[ -z $PROJECT_NAME ]]; then
