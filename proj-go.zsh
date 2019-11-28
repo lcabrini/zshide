@@ -24,7 +24,7 @@ filemsg main.go
 
 for src in main.go; do
     if [[ -f $t/$src ]]; then
-        cp $t/$src $PROJECT_PATH/$src
+        cp $t/go-$src $PROJECT_PATH/$src
     fi
 done
 
