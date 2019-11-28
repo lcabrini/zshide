@@ -16,7 +16,12 @@ fi
 
 $t=$ZI_HOME/t
 filemsg main.go
-cp $t/go-main.go $PROJECT_PATH/main.go
+
+for src in main.go; do
+    if [[ -f $t/$src ]]; then
+        cp $t/$src $PROJECT_PATH/$src
+    fi
+done
 
 for hook in enter leave precmd; do
     if [[ -f $t/go-$hook.zsh ]]; then
