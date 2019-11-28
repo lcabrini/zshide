@@ -19,7 +19,7 @@ if [[ -f $ZI_HOME/lang-go.zsh ]]; then
     . $ZI_HOME/lang-go.zsh
 fi
 
-$t=$ZI_HOME/t
+t=$ZI_HOME/t
 filemsg main.go
 
 for src in main.go; do
