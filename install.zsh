@@ -120,6 +120,8 @@ for f in *; do
 done
 cd ..
 
+info "installing os-specific package lists"
+cp pkg-* $ZI_HOME
 info "Setting up environment"
 sed "s|@ZI_HOME@|$ZI_HOME|" zshrc > $ZI_HOME/zshrc
 #cp zshrc $ZI_HOME
