@@ -51,7 +51,7 @@ case $cmd in
     (dp|delete-project)
         #PROJECT_NAME=$1
         #PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
-        . $ZI_HOME/delete-project.zsh "$@"
+        zsh $ZI_HOME/delete-project.zsh "$@"
         ;;
 
     (et|edit-template)
