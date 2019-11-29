@@ -1,9 +1,12 @@
 # zshide: the Zsh IDE
 #
-# Sets the user's GitHub user status message to $GITHUB_STATUS.
+# Sets the user's GitHub user status message.
 #
 # Inputs:
 #    $1: the GitHub user status message
+#
+# Affected by:
+#    UPDATE_GITHUB_USERSTATUS: set to "no" to prevent update
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
