@@ -14,6 +14,7 @@ while (( $# )); do
     eval "PROJECT_${(U)key}='$val'"
     shift
 done
+PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
 unset key val
 
 if [[ -z $PROJECT_TYPE ]]; then
