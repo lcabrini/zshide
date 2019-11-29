@@ -23,7 +23,7 @@ t=$ZI_HOME/t
 filemsg main.go
 
 for src in main.go; do
-    if [[ -f $t/$src ]]; then
+    if [[ -f $t/go-$src ]]; then
         cp $t/go-$src $PROJECT_PATH/$src
     fi
 done
