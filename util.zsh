@@ -45,10 +45,11 @@ yesno() {
 
 read_setting() {
     key=$1
+    def=$2
     rc=$ZI_HOME/zshiderc
     if [[ ! -f $rc ]]; then
         #print ""
-        eval "$key="
+        eval "$key=$def"
     elif [[ -z $(cat $rc | grep "^$key") ]]; then
         #print ""
         eval "$key="
