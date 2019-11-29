@@ -1,3 +1,12 @@
+# zshide: the Zsh IDE
+#
+# Deletes a project, both from GitHub and locally.
+#
+# Positional parameters:
+#   $1: the name of the project to delete
+#   
+# Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
+
 pd=$PROJECTS_DIR/$PROJECT_NAME
 #has_repo=$(. $ZI_HOME/github-has-repo.zsh)
 . $ZI_HOME/github-has-repo.zsh
