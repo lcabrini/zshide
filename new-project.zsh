@@ -19,7 +19,7 @@ unset key val
 if [[ -z $PROJECT_TYPE ]]; then
     err "no project type specified"
     exit $E_PARAM
-elif [[ ! -f $ZI_HOME/proj-$2.zsh ]]; then
+elif [[ ! -f $ZI_HOME/proj-$PROJECT_TYPE.zsh ]]; then
     err "unknown project type: $PROJECT_TYPE"
     exit $E_PARAM
 fi
