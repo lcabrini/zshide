@@ -13,7 +13,7 @@
 read_setting UPDATE_GITHUB_USERSTATUS no
 if [[ $UPDATE_GITHUB_USERSTATUS == no ]]; then
     return
-then
+fi
 
 GITHUB_STATUS=$1
 if [[ -z $GITHUB_STATUS ]]; then
