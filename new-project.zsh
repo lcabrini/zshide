@@ -8,6 +8,14 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+while (( $# )); do
+    key=${1%=*}
+    val=${1#*=}
+    eval "PROJECT_${(U)key}='$val'"
+    shift
+done
+unset key val
+
 if [[ -z $PROJECT_TYPE ]]; then
     err "no project type specified"
     exit $E_PARAM
