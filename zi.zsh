@@ -49,25 +49,25 @@ case $cmd in
         ;;
 
     (dp|delete-project)
-        PROJECT_NAME=$2
+        PROJECT_NAME=$1
         PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
         . $ZI_HOME/delete-project.zsh
         ;;
 
     (et|edit-template)
-        TPLNAME=$2
+        TPLNAME=$1
         . $ZI_HOME/edit-template.zsh
         ;;
 
     (rs|read-setting)
-        key=$2
+        key=$1
         read_setting $key
         print ${(P)key}
         ;;
 
     (ws|write-setting)
-        key=$2
-        val=$3
+        key=$1
+        val=$1
         write_setting $key $val
         ;;
 
@@ -80,7 +80,7 @@ case $cmd in
         ;;
 
     (ds|delete-setting)
-        key=$2
+        key=$1
         delete_setting $key
         ;;
 
