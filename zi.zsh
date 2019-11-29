@@ -33,12 +33,19 @@ PROJECTS_DIR=$HOME/git
 
 . $ZI_HOME/util.zsh
 
-case $1 in 
+cmd=$1
+shift
+if [[ -z $cmd ]]; then
+    err "no command specified"
+    exit E_COMMAND
+fi
+
+case $cmd in 
     (np|new-project)
-        PROJECT_TYPE=$2
-        PROJECT_NAME=$3
-        PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
-        . $ZI_HOME/new-project.zsh
+        #PROJECT_TYPE=$2
+        #PROJECT_NAME=$3
+        #PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
+        . $ZI_HOME/new-project.zsh "$@"
         ;;
 
     (dp|delete-project)
