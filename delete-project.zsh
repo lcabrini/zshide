@@ -7,6 +7,12 @@
 #   
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+PROJECT_NAME=$1
+if [[ -z $PROJECT_NAME ]]; then
+    err "no project specified"
+    exit 1
+fi
+
 pd=$PROJECTS_DIR/$PROJECT_NAME
 #has_repo=$(. $ZI_HOME/github-has-repo.zsh)
 . $ZI_HOME/github-has-repo.zsh
