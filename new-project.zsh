@@ -8,6 +8,8 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+. $ZI_HOME/util.zsh
+
 while (( $# )); do
     key=${1%=*}
     val=${1#*=}

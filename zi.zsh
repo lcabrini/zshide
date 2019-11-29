@@ -28,8 +28,8 @@ if [[ $# -lt 1 ]]; then
     exit $E_COMMAND
 fi
 
-ZI_HOME=@ZI_HOME@
-PROJECTS_DIR=$HOME/git
+export ZI_HOME=@ZI_HOME@
+export PROJECTS_DIR=$HOME/git
 
 . $ZI_HOME/util.zsh
 
@@ -45,7 +45,7 @@ case $cmd in
         #PROJECT_TYPE=$2
         #PROJECT_NAME=$3
         #PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
-        . $ZI_HOME/new-project.zsh "$@"
+        zsh $ZI_HOME/new-project.zsh "$@"
         ;;
 
     (dp|delete-project)
