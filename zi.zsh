@@ -1,6 +1,6 @@
 #! /bin/zsh
 
-# zi: a Zsh+Vim IDE
+# zshide: the Zsh IDE
 #
 # This is the main zshide script. It is used to interact with the rest of
 # the IDE.
