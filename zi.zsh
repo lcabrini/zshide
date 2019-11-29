@@ -68,6 +68,10 @@ case $1 in
         cat $ZI_HOME/zshiderc
         ;;
 
+    (sd|settings-doc)
+        . $ZI_HOME/doc-settings.zsh
+        ;;
+
     (ds|delete-setting)
         key=$2
         delete_setting $key
