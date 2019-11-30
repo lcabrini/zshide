@@ -9,6 +9,21 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+while (( $# )); do
+#for arg in $@; do
+    if [[ $arg =~ .+=.+ ]]; then
+        key=${1%=*}
+        val=${1#*=}
+        eval "PROJECT_${(U)key}='$val'"
+        shift
+    else
+        err "cannot handle $arg: is not a key-value pair."
+        # TODO: for now we just continue. Should we exit on bad args?
+        shift
+        continue
+    fi
+done
+
 if [[ -z $PROJECT_NAME ]]; then
     err "no repository name"
     exit 1
