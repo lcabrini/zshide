@@ -12,12 +12,16 @@
 
 #while (( $# )); do
 for arg in $@; do
-    key=${arg%=*}
-    val=${arg#*=}
-    eval "PROJECT_${(U)key}='$val'"
-    #shift
+    if [[ $arg =~ .+=.+ ]]; then
+        key=${arg%=*}
+        val=${arg#*=}
+        eval "PROJECT_${(U)key}='$val'"
+    else
+        err "cannot handle $arg: is not a key-value pair."
+        # TODO: for now we just continue.
+        continue
+    fi
 done
-exit
 PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
 unset key val
 
