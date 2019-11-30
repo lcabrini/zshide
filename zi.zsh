@@ -7,10 +7,11 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
-E_OK=0
-E_COMMAND=1
-E_PARAM=2
-E_EXISTS=3
+export ZI_HOME=@ZI_HOME@
+export PROJECTS_DIR=$HOME/git
+
+. $ZI_HOME/common.zsh
+. $ZI_HOME/util.zsh
 
 read -rd '' usage <<EOF
 usage: $(basename $0) command
@@ -27,11 +28,6 @@ if [[ $# -lt 1 ]]; then
     print $usage
     exit $E_COMMAND
 fi
-
-export ZI_HOME=@ZI_HOME@
-export PROJECTS_DIR=$HOME/git
-
-. $ZI_HOME/util.zsh
 
 cmd=$1
 shift
