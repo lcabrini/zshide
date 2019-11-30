@@ -49,7 +49,11 @@ fi
 
 info "Creating project $PROJECT_NAME"
 zsh $ZI_HOME/github-create-repo.zsh "$@"
-
+res=$?
+if [[ $res -ne 0 ]]; then
+    err "GitHub creation failed"
+    exit 1
+fi
 mkdir $PROJECT_PATH/.zshide
 
 . $ZI_HOME/proj-$PROJECT_TYPE.zsh
