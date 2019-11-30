@@ -16,7 +16,7 @@ PROJECT_DESCRIPTION="Created by zshide"
 
 while (( $# )); do
 #for arg in $@; do
-    if [[ $arg =~ .+=.+ ]]; then
+    if [[ $1 =~ .+=.+ ]]; then
         key=${1%=*}
         val=${1#*=}
         eval "PROJECT_${(U)key}='$val'"
