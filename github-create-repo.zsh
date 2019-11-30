@@ -70,7 +70,13 @@ esac
 REPO_URL=$(print $json | jq '.ssh_url' | tr -d '"')
 info "created GitHub repo $PROJECT_NAME"
 (cd $PROJECTS_DIR && git clone $REPO_URL > /dev/null 2>&1)
-info "cloned $PROJECT_NAME into $PROJECTS_DIR/$PROJECT_NAME"
+if [[ -d $PROJECTS_DIR/$PROJECT_NAME ]]; then
+    info "cloned $PROJECT_NAME into $PROJECTS_DIR/$PROJECT_NAME"
+else
+    err "failed to clone $PROJECT_NAME"
+    exit 1
+fi
+
 
 # TODO: how can I get a project types .gitignore from GitHub?
 cat >> $PROJECTS_DIR/$PROJECT_NAME/.gitignore <<EOF
