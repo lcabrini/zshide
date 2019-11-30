@@ -9,6 +9,8 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+. $ZI_HOME/util.zsh
+
 # Defaults
 PROJECT_DESCRIPTION="Created by zshide"
 
