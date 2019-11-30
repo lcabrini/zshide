@@ -18,7 +18,7 @@ for arg in $@; do
         eval "PROJECT_${(U)key}='$val'"
     else
         err "cannot handle $arg: is not a key-value pair."
-        # TODO: for now we just continue.
+        # TODO: for now we just continue. Should we exit on bad args?
         continue
     fi
 done
