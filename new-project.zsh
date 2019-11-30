@@ -14,7 +14,6 @@
 for arg in $@; do
     key=${arg%=*}
     val=${arg#*=}
-    print "PROJECT_${(U)key}='$val'"
     eval "PROJECT_${(U)key}='$val'"
     #shift
 done
