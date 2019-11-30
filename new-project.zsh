@@ -57,8 +57,13 @@ fi
 mkdir $PROJECT_PATH/.zshide
 
 . $ZI_HOME/proj-$PROJECT_TYPE.zsh
-cd $PROJECTS_DIR/$PROJECT_NAME
-git add .
-git commit -m "zshide applied template" > /dev/null 2>&1
-git push > /dev/null 2>&1
-cd -
+
+if [[ -d $PROJECTS_DIR/$PROJECT_NAME ]]; then
+    cd $PROJECTS_DIR/$PROJECT_NAME
+    git add .
+    git commit -m "zshide applied template" > /dev/null 2>&1
+    git push > /dev/null 2>&1
+    cd -
+else
+    err "local project directory does not exist"
+fi
