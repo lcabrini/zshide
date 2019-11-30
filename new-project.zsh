@@ -10,12 +10,15 @@
 
 . $ZI_HOME/util.zsh
 
-while (( $# )); do
-    key=${1%=*}
-    val=${1#*=}
+#while (( $# )); do
+for arg in $@; do
+    key=${arg%=*}
+    val=${arg#*=}
+    print "PROJECT_${(U)key}='$val'"
     eval "PROJECT_${(U)key}='$val'"
-    shift
+    #shift
 done
+exit
 PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
 unset key val
 
@@ -42,7 +45,7 @@ elif [[ -d $PROJECTS_DIR/$PROJECT_NAME ]]; then
 fi
 
 info "Creating project $PROJECT_NAME"
-. $ZI_HOME/github-create-repo.zsh
+zsh $ZI_HOME/github-create-repo.zsh "$@"
 
 mkdir $PROJECT_PATH/.zshide
 
