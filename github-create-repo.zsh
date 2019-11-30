@@ -9,6 +9,9 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+# Defaults
+PROJECT_DESCRIPTION="Created by zshide"
+
 while (( $# )); do
 #for arg in $@; do
     if [[ $arg =~ .+=.+ ]]; then
@@ -37,7 +40,7 @@ url="$URL/user/repos"
 read -rd '' repodata <<EOF
 {
 "name": "$PROJECT_NAME",
-"description": "created by zshide",
+"description": "$PROJECT_DESCRIPTION",
 "private": false,
 "has_issues": true,
 "has_projects": false,
