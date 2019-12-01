@@ -11,8 +11,8 @@
 # Returns:
 #   0 if the repository was found or 1 if it wasn't
 
-PROJECT_NAME=$1
-if [[ -z $PROJECT_NAME ]]; then
+REPO=$1
+if [[ -z $REPO ]]; then
     print "E: no repository name" >> /dev/stderr
     exit 1
 fi
@@ -20,4 +20,4 @@ fi
 . $ZI_HOME/github-get-repos.zsh
 repos=$ZI_HOME/github-repos.json
 repo_names=$(cat $repos | jq '.[].name' | tr -d '"')
-response=$(print $repo_names | grep "^$PROJECT_NAME$")
+response=$(print $repo_names | grep "^$REPO$")
