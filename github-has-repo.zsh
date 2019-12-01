@@ -19,14 +19,14 @@ elif [[ ! -d $ZI_HOME ]]; then
     exit 1
 fi
 
-REPO=$1
-if [[ -z $REPO ]]; then
-    print "E: no repository name" >> /dev/stderr
+if [[ -z $(whence jq) ]]; then
+    print "E: cannot find jq. Unable to proceed." >> /dev/stderr
     exit 1
 fi
 
-if [[ -z $(whence jq) ]]; then
-    print "E: cannot find jq. Unable to proceed." >> /dev/stderr
+REPO=$1
+if [[ -z $REPO ]]; then
+    print "E: no repository name" >> /dev/stderr
     exit 1
 fi
 
