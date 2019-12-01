@@ -19,6 +19,7 @@ fi
 
 if [[ -z $(whence jq) ]]; then
     print "E: cannot find jq. Unable to proceed." >> /dev/stderr
+    exit 1
 fi
 
 . $ZI_HOME/github-get-repos.zsh
