@@ -1,10 +1,13 @@
 # zshide: the Zsh IDE
 #
-# This script is used to create a new project. 
+# Creates a new project. The project at least needs to have a name and a
+# type
 #
-# Requires:
-#   PROJECT_TYPE
-#   PROJECT_NAME
+# Keyword arguments:
+#   (NOTE: keyword arguments that are not recognized are simply ignored)
+#   name:  the name of the new project (req)
+#   type:  the type of the new project (req)
+#   description: a short project description
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
