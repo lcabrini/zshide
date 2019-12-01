@@ -27,13 +27,13 @@ fi
 . $ZI_HOME/util.zsh
 
 if [[ -z $(whence jq) ]]; then
-    print "E: cannot find jq. Unable to proceed." >> /dev/stderr
+    err "cannot find jq. Unable to proceed."
     exit 1
 fi
 
 REPO=$1
 if [[ -z $REPO ]]; then
-    print "E: no repository name" >> /dev/stderr
+    err "E: no repository name"
     exit 1
 fi
 
