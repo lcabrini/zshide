@@ -19,6 +19,9 @@ elif [[ ! -d $ZI_HOME ]]; then
     exit 1
 fi
 
+. $ZI_HOME/common.zsh
+. $ZI_HOME/util.zsh
+
 if [[ -z $(whence jq) ]]; then
     print "E: cannot find jq. Unable to proceed." >> /dev/stderr
     exit 1
