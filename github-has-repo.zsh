@@ -17,6 +17,10 @@ if [[ -z $REPO ]]; then
     exit 1
 fi
 
+if [[ -z $(whence jq) ]]; then
+    print "E: cannot find jq. Unable to proceed." >> /dev/stderr
+fi
+
 . $ZI_HOME/github-get-repos.zsh
 repos=$ZI_HOME/github-repos.json
 repo_names=$(cat $repos | jq '.[].name' | tr -d '"')
