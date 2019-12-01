@@ -11,6 +11,14 @@
 # Returns:
 #   0 if the repository was found or 1 if it wasn't
 
+if [[ -z $ZI_HOME ]]; then
+    print "E: this script should not be run independently" >> /dev/stderr
+    exit 1
+elif [[ ! -d $ZI_HOME ]]; then
+    print "E: cannot find ZI_HOME. Cannot continue" >> /dev/stderr
+    exit 1
+fi
+
 REPO=$1
 if [[ -z $REPO ]]; then
     print "E: no repository name" >> /dev/stderr
