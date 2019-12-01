@@ -11,6 +11,7 @@
 # Returns:
 #   0 if the repository was found or 1 if it wasn't
 
+PROJECT_NAME=$1
 if [[ -z $PROJECT_NAME ]]; then
     print "E: no repository name" >> /dev/stderr
     exit 1
