@@ -9,14 +9,18 @@
 #   $1: the name of the repository
 #
 # Returns:
-#   0 if the repository was found or 1 if it wasn't
+#   0:   repository was found
+#   1:   repository was not found
+#   99:  ZI_HOME not set or couldn't be found
+
+E_ZI_HOME=99
 
 if [[ -z $ZI_HOME ]]; then
     print "E: this script should not be run independently" >> /dev/stderr
-    exit 1
+    exit $E_ZI_HOME
 elif [[ ! -d $ZI_HOME ]]; then
     print "E: cannot find ZI_HOME. Cannot continue" >> /dev/stderr
-    exit 1
+    exit $E_ZI_HOME
 fi
 
 . $ZI_HOME/common.zsh
