@@ -38,10 +38,12 @@ on_chpwd() {
             CURRENT_PROJECT=$current
             CURRENT_PROJECT_PATH=$PROJECTS_HOME/$CURRENT_PROJECT
             if [[ ! -d $CURRENT_PROJECT_PATH/.zshide ]]; then
+                (
                 git pull
                 if [[ ! -d $CURRENT_PROJECT_PATH/.zshide ]]; then
                     init_zshide_meta
                 fi
+                ) > /dev/null 2>&1 &|
             fi
 
             if [[ -f $CURRENT_PROJECT_PATH/.zshide/enter.zsh ]]; then
