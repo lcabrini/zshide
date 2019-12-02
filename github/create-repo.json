@@ -1,0 +1,11 @@
+{
+  "name": "@PROJECT_NAME@",
+  "description": "@PROJECT_DESCRIPTION@",
+  "private": false,
+  "has_issues": true,
+  "has_projects": false,
+  "has_wiki": true,
+  "license_template": "mit",
+  "auto_init": true
+}
+
