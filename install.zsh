@@ -95,6 +95,11 @@ if [[ ! -d $TPLDIR ]]; then
     mkdir $TPLDIR
 fi
 
+if [[ ! -d $ZI_HOME/github ]]; then
+    info "$ZI_HOME/github does not exist, creating it"
+    mkdir $ZI_HOME/github
+fi
+
 sed "s|@ZI_HOME@|$ZI_HOME|" zi.zsh > $BINDIR/zi
 chmod +x $BINDIR/zi
 
@@ -123,6 +128,11 @@ for f in *; do
         cp $f $TPLDIR
     fi
 done
+cd ..
+
+info "installing github json"
+cd github
+cp * $ZI_HOME/github
 cd ..
 
 info "installing os-specific package lists"
