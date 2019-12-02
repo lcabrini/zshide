@@ -39,20 +39,36 @@ fi
 url="$URL/user/repos"
 
 # TODO: several (all?) of these should be configurable
-read -rd '' repodata <<EOF
-{
-"name": "$PROJECT_NAME",
-"description": "$PROJECT_DESCRIPTION",
-"private": false,
-"has_issues": true,
-"has_projects": false,
-"has_wiki": true,
-"license_template": "mit",
-"auto_init": true
-}
-EOF
+#read -rd '' repodata <<EOF
+#{
+#"name": "$PROJECT_NAME",
+#"description": "$PROJECT_DESCRIPTION",
+#"private": false,
+#"has_issues": true,
+#"has_projects": false,
+#"has_wiki": true,
+#"license_template": "mit",
+#"auto_init": true
+#}
+#EOF
+#read -rd '' repodata < $ZI_HOME/github/create-repo.json
+#repodata=$(print $repodata | tr -d '\n')
+while read line; do
+    #print "I got: $line"
+    #for sub in NAME DESCRIPTION; do
+    #    s=PROJECT_$sub
+    #    line=${line/@${s}@/${(P)s}}
+    #done
+    #line=${line:gs/@PROJECT_NAME@/$PROJECT_NAME/}
+    repodata=$repodata$line
+done < $ZI_HOME/github/create-repo.json
+for sub in NAME DESCRIPTION; do
+    s=PROJECT_$sub
+    repodata=${repodata//@${s}@/${(P)s}}
+done
 
-repodata=$(print $repodata | tr -d '\n')
+#print $repodata
+#exit
 response=$(eval "$CURL $HEADERS -d '$repodata' $url")
 json=$(print $response | sed '1,/^\s*$/d')
 state=$(print $response | grep ^Status: | awk '{ print $2 }')
