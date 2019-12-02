@@ -85,6 +85,11 @@ if [[ ! -d $BINDIR ]]; then
     mkdir $BINDIR
 fi
 
+if [[ -d $ZI_HOME ]]; then
+    info "$ZI_HOME does not exist, creating it"
+    mkdir $ZI_HOME
+fi
+
 if [[ ! -d $TPLDIR ]]; then
     info "$TPLDIR does not exist, creating it"
     mkdir $TPLDIR
