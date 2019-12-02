@@ -63,7 +63,7 @@ case $cmd in
 
     (ws|write-setting)
         key=$1
-        val=$1
+        val=$2
         write_setting $key $val
         ;;
 
