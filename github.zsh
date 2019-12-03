@@ -5,9 +5,10 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+E_OK=0
 E_ZI_HOME=99
 
-[[ _zi_github == "yes" ]] && return 0
+[[ _zi_github == "yes" ]] && return $E_OK
 _zi_github="yes"
 
 if [[ -z $ZI_HOME ]]; then
