@@ -4,6 +4,7 @@ if [[ -z $PROJECT_NAME ]]; then
 fi
 
 . $ZI_HOME/github.zsh
+GITHUB_LOGIN=$(github_whoami)
 
 url="https://api.github.com/repos/$GITHUB_LOGIN/$PROJECT_NAME"
 #print "URL: $url"

@@ -28,6 +28,8 @@ for src in main.go; do
     fi
 done
 
+GITHUB_LOGIN=$(github_whoami)
+
 cd $PROJECT_PATH
 go mod init github.com/$GITHUB_LOGIN/$PROJECT_NAME
 cd -

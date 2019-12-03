@@ -29,10 +29,34 @@ fi
 
 auth="Authorization: token $GITHUB_TOKEN"
 accept="Accept: application/vnd.github.v3+json"
+curl_headers="-H '$auth' -H '$accept'"
+# TODO: remove this when all references to it are gone
 HEADERS="-H '$auth' -H '$accept'"
+github_root=https://api.github.com
+# TODO: remove this
 URL="https://api.github.com"
+ 
 
 # XXX: for now only used by github related functions. Move if needed.
+curl=(curl -s -i 
+    -H "'Authorization: token $GITHUB_TOKEN'"
+    -H "'Accept: application/vnd.github.v3+json'")
+
+# TODO: remove this when all references to it are gone
 CURL="curl -s -i"
 
-. $ZI_HOME/github-whoami.zsh
+#. $ZI_HOME/github-whoami.zsh
+
+github_whoami() {
+    local username=$(read_setting GITHUB_LOGIN)
+    if [[ -n $username ]]; then
+        print $username
+        return $E_OK
+    fi
+
+    local response=$(eval $curl $github_root/user)
+    local json=$(print $response | sed '1,/^\s*$/d')
+    username=$(print $json | jq '.login' | tr -d '"')
+    write_setting "GITHUB_LOGIN" $username
+    print $username
+}
