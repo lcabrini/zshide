@@ -135,6 +135,9 @@ cd github
 cp * $ZI_HOME/github
 cd ..
 
+info "creating cache directory"
+mkdir $ZI_HOME/cache
+
 info "installing os-specific package lists"
 cp pkg-* $ZI_HOME
 info "Setting up environment"
