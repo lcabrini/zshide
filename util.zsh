@@ -58,6 +58,8 @@ read_setting() {
         #print "key: $key, val: $val"
         eval "$key=$val"
     fi
+
+    print $val
 }
 
 write_setting() {
