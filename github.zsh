@@ -7,6 +7,9 @@
 
 E_ZI_HOME=99
 
+[[ _zi_github == "yes" ]] && return 0
+_zi_github="yes"
+
 if [[ -z $ZI_HOME ]]; then
     print "E: ZI_HOME not set, unable to continue" >&2
     exit $E_ZI_HOME
