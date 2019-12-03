@@ -5,6 +5,16 @@
 #
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
+E_ZI_HOME=99
+
+if [[ -z $ZI_HOME ]]; then
+    print "E: ZI_HOME not set, unable to continue" >> /dev/stderr
+    exit $E_ZI_HOME
+elif [[ ! -d $ZI_HOME ]]; then
+    print "E: cannot find ZI_HOME, unable to continue" >> /dev/stderr
+    exit $E_ZI_HOME
+fi
+
 . $ZI_HOME/util.zsh
 
 read_setting GITHUB_TOKEN
