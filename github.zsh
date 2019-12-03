@@ -1,8 +1,8 @@
 E_OK=0
 E_ZI_HOME=99
 
-[[ _zi_github == "yes" ]] && return $E_OK
-_zi_github="yes"
+[[ $_zi_github == yes ]] && return $E_OK
+_zi_github=yes
 
 if [[ -z $ZI_HOME ]]; then
     print "E: ZI_HOME not set, unable to continue" >&2
