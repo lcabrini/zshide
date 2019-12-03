@@ -1,10 +1,3 @@
-# zshide: the Zsh IDE
-#
-# This script contains generic stuff that is useful for any function that
-# talks GitHub API (v3 or v4).
-#
-# Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
-
 E_OK=0
 E_ZI_HOME=99
 
