@@ -8,10 +8,10 @@
 E_ZI_HOME=99
 
 if [[ -z $ZI_HOME ]]; then
-    print "E: ZI_HOME not set, unable to continue" >> /dev/stderr
+    print "E: ZI_HOME not set, unable to continue" >&2
     exit $E_ZI_HOME
 elif [[ ! -d $ZI_HOME ]]; then
-    print "E: cannot find ZI_HOME, unable to continue" >> /dev/stderr
+    print "E: cannot find ZI_HOME, unable to continue" >&2
     exit $E_ZI_HOME
 fi
 
