@@ -35,7 +35,6 @@ HEADERS="-H '$auth' -H '$accept'"
 github_root=https://api.github.com
 # TODO: remove this
 URL="https://api.github.com"
- 
 
 # XXX: for now only used by github related functions. Move if needed.
 curl=(curl -s -i 
@@ -57,6 +56,6 @@ github_whoami() {
     local response=$(eval $curl $github_root/user)
     local json=$(print $response | sed '1,/^\s*$/d')
     username=$(print $json | jq '.login' | tr -d '"')
-    write_setting "GITHUB_LOGIN" $username
+    write_setting GITHUB_LOGIN $username
     print $username
 }
