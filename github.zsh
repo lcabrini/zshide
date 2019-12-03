@@ -59,3 +59,26 @@ github_whoami() {
     write_setting GITHUB_LOGIN $username
     print $username
 }
+
+github_get_repos() {
+    local cache=$ZI_HOME/cache/github-repos.json
+    if [[ -f $cache ]]; then
+        local now=$(date +%s)
+        local timestamp=$(stat -c "%Y" $repos)
+        if [[ $((now - $timestamp)) -gt $((3600 * 10)) ]]; then
+            rm -f $cache
+        else
+            cat $cache | jq . > /dev/null 2>&1
+            if [[ $? -ne 0 ]]; then
+                rm -f $cache
+            fi
+        fi
+    fi
+
+    if [[ -f $cache ]]; then
+        info "Refreshing local GitHub repository cache"
+        local response=$(eval $curl $github_root/user/repos)
+        # TODO: check response headers for errors
+        print $response | sed '1,/^\s*$/d' > $cache
+    fi
+}
