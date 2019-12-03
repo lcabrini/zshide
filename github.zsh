@@ -14,6 +14,13 @@ fi
 
 . $ZI_HOME/util.zsh
 
+whence jq > /dev/null 2>&1
+if [[ $? -ne 0 ]]; then
+    warn "the jq executable could not be found"
+    # TODO: we should offer to install it.
+    exit 1
+fi
+
 read_setting GITHUB_TOKEN
 if [[ -z $GITHUB_TOKEN ]]; then
     err "GitHub token not found."
