@@ -14,12 +14,13 @@ fi
 
 . $ZI_HOME/util.zsh
 
-whence jq > /dev/null 2>&1
-if [[ $? -ne 0 ]]; then
-    warn "the jq executable could not be found"
-    # TODO: we should offer to install it.
-    exit 1
-fi
+for cmd in curl jq; do
+    if ! whence $cmd > /dev/null 2>&1; then
+        warn "the $cmd executable could not be found"
+        # TODO: offer to install the missing package
+        return 1
+    fi
+done
 
 read_setting GITHUB_TOKEN
 if [[ -z $GITHUB_TOKEN ]]; then
