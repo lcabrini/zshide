@@ -99,3 +99,49 @@ github_has_repo() {
         return 1
     fi
 }
+
+build_github_graphql() {
+    if (($# < 1)); then
+        print "Foo!"
+        return 1
+    fi
+    local queryname=$1
+    shift
+    local vars="$@"
+
+    if [[ -f $ZI_HOME/github/$queryname.graphql ]]; then
+        local query=$(cat $ZI_HOME/github/$queryname.graphql | tr -d '\n')
+    else
+        print "Bar!"
+        return 1
+    fi
+
+    if [[ -n $vars ]]; then
+        local varjson=
+        local key val pair
+        for v in $@; do
+            if [[ $v =~ .+=.+ ]]; then
+                key=${v%=*}
+                val=${v#*=}
+                pair="\"$key\":\"$val\""
+
+                if [[ -z $varjson ]]; then
+                    varjson=$pair
+                else
+                    varjson=$varjson,$pair
+                fi
+            fi
+        done
+    fi
+
+    if [[ -n $varjson ]]; then
+        varjson=",\"variables\": { $varjson }"
+    fi
+
+    local json='{"query":"'$query'"'
+    if [[ -n $varjson ]]; then
+        json=$json$varjson
+    fi
+    json=$json'}'
+    print $json
+}
