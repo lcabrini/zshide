@@ -104,7 +104,7 @@ github_change_userstatus() {
     local userstatus="$1"
     local url=$github_root/graphql
     local gcl=$(build_github_graphql change-userstatus status=$userstatus)
-    local response=$(eval $curl -d "$gcl" $url)
+    local response=$(eval $curl -d \'$gcl\' $url)
 }
 
 build_github_graphql() {
