@@ -1,0 +1,7 @@
+mutation($status:String!) {
+  changeUserStatus(input:{message:$status}) {
+    status {
+      message
+    }
+  }
+}
