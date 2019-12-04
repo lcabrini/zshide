@@ -13,6 +13,7 @@ export CURRENT_PROJECT=
 export CURRENT_PROJECT_PATH=
 
 . $ZI_HOME/util.zsh
+. $ZI_HOME/github.zsh
 
 init_zshide_meta() {
     info "initializing zshide meta directory"
@@ -49,7 +50,8 @@ on_chpwd() {
             if [[ -f $CURRENT_PROJECT_PATH/.zshide/enter.zsh ]]; then
                 #print "start.zsh found"
                 m="Working on $CURRENT_PROJECT"
-                . $ZI_HOME/github-change-userstatus.zsh $m &|
+                #. $ZI_HOME/github-change-userstatus.zsh $m &|
+                github_change_userstatus $m &|
                 . $CURRENT_PROJECT_PATH/.zshide/enter.zsh
             else
                 #print "no start.zsh found"
