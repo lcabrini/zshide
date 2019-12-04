@@ -82,3 +82,20 @@ github_get_repos() {
         print $response | sed '1,/^\s*$/d' > $cache
     fi
 }
+
+github_has_repo() {
+    local repo=$1
+    if [[ -z $repo ]]; then
+        err "E: no repository specified"
+        return 1
+    fi
+
+    github_get_repos
+    local cache=$ZI_HOME/cache/github-repos.json
+    local repos=$(cat $cache | jq '.[].name' | tr -d '"')
+    if [[ -n $(print $repos | grep "^$repo^") ]]; then
+        return 0
+    else
+        return 1
+    fi
+}

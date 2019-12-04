@@ -15,11 +15,13 @@ fi
 
 pd=$PROJECTS_DIR/$PROJECT_NAME
 #has_repo=$(. $ZI_HOME/github-has-repo.zsh)
-. $ZI_HOME/github-has-repo.zsh
-has_repo=$response
+#. $ZI_HOME/github-has-repo.zsh
+#has_repo=$response
+github_has_repo
+has_repo=$?
 
 has_wdir=$(test -d $pd && print $pd)
-if [[ -z $has_repo && -z $has_wdir ]]; then
+if [[ $has_repo -ne 0 && -z $has_wdir ]]; then
     err "no such project: $PROJECT_NAME"
     exit 1
 fi
