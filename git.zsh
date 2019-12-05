@@ -14,13 +14,11 @@ fi
 
 . $ZI_HOME/util.zsh
 
-for cmd in git; do
-    if ! whence $cmd > /dev/null 2>&1; then
-        warn "the $cmd executable could not be found"
-        # TODO: offer to install the missing package
-        return 1
-    fi
-done
+if ! pkgs=has_commands git; then
+    warn "The following programs where not found: $pkgs"
+    # TODO: offer to install missing packages
+    return 1
+fi
 
 git_pull() {
     local $remote=$1
