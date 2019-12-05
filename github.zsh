@@ -101,6 +101,57 @@ github_has_repo() {
     fi
 }
 
+github_create_repo() {
+    local key val
+    while (($#)); do
+        if [[ $1 =~ .+=.+ ]]; then
+            key=${1%=*}
+            val=${1#=*}
+            eval local project_${(L)key}=\'$val\'
+            shift
+        else
+            err "cannot handle $1: is not a key-value pair"
+            # TODO: decide what to do here
+            shift
+            continue
+        fi
+    done
+
+    if [[ -z $project_name ]]; then
+        err "no repository name"
+        return 1
+    fi
+
+    url=$github_root/user/repos
+
+    data=$(< $ZI_HOME/github/create-repo.json)
+    for sub in NAME DESCRIPTION; do
+        s=PROJECT_$sub
+        #c=${(L)s}
+        #print "S: $s, C: $c, C-ref: ${(P)c}"
+        data=${data//@${s}@/${(LP)s}}
+    done
+
+    #print "DATA: $data"
+    #return 0
+    response=$(eval $curl -d '$data' $url)
+    json=$(print $response | sed '1,/^\s*$/d')
+    state=$(print $response | grep ^Status: | awk '{ print $2 }')
+    case $state in
+        (201)
+            info "GitHub repo $project_name created."
+            repo_url=$(print $json | jq '.ssh_url' | tr -d '"')
+            print $repo_url
+            return 0
+            ;;
+
+        (*)
+            err "GitHub repo creation failed"
+            return 1
+            ;;
+    esac
+}
+
 github_change_userstatus() {
     local userstatus="$1"
     local url=$github_root/graphql

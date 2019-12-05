@@ -12,6 +12,7 @@
 # Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
 
 . $ZI_HOME/util.zsh
+. $ZI_HOME/github.zsh
 
 #while (( $# )); do
 for arg in $@; do
@@ -51,7 +52,8 @@ elif [[ -d $PROJECTS_DIR/$PROJECT_NAME ]]; then
 fi
 
 info "Creating project $PROJECT_NAME"
-zsh $ZI_HOME/github-create-repo.zsh "$@"
+github_create_repo "$@"
+#zsh $ZI_HOME/github-create-repo.zsh "$@"
 res=$?
 if [[ $res -ne 0 ]]; then
     err "GitHub creation failed"
