@@ -1,15 +1,15 @@
 R_GIT_OK=0
-R_GIT_ZI=99
+R_GIT_ZI_HOME=99
 
 [[ $_zi_git == yes ]] && return $R_GIT_OK
 _zi_git=yes
 
 if [[ -z $ZI_HOME ]]; then
     print "E: ZI_HOME not set, unable to continue" >&2
-    exit $E_ZI_HOME
+    return $R_GIT_ZI_HOME
 elif [[ ! -d $ZI_HOME ]]; then
     print "E: cannot find ZI_HOME, unable to continue" >&2
-    exit $E_ZI_HOME
+    return $R_GIT_ZI_HOME
 fi
 
 . $ZI_HOME/util.zsh
