@@ -22,7 +22,7 @@ for cmd in curl jq; do
     fi
 done
 
-read_setting GITHUB_TOKEN
+GITHUB_TOKEN=$(read_setting GITHUB_TOKEN)
 if [[ -z $GITHUB_TOKEN ]]; then
     err "GitHub token not found."
     exit 1
