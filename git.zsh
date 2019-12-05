@@ -15,11 +15,6 @@ fi
 . $ZI_HOME/util.zsh
 
 if ! pkgs=has_commands git; then
-    if ((${(w)#pkgs} == 1)); then
-        warn "The following program was not found: $pkgs"
-    else
-        warn "The following programs where not found: $pkgs"
-    fi
     # TODO: offer to install missing packages
     return 1
 fi

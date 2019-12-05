@@ -1,3 +1,5 @@
+. ~/.zshide/util.zsh
+
 has_commands() {
     local -a pkgs
     local cmd
@@ -8,8 +10,21 @@ has_commands() {
         fi
     done
 
-    if (($#pkgs > 0)); then
-        print $pkgs
-        return 1
-    fi
+    case $#pkgs in
+        (0)
+            return 0
+            ;;
+
+        (1)
+            warn "the following command was not found: $pkgs"
+            print $pkgs
+            return 1
+            ;;
+
+        (*)
+            warn "the following commands were not found: $pkgs"
+            print $pkgs
+            return 1
+            ;;
+    esac
 }
