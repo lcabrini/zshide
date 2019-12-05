@@ -14,7 +14,7 @@ fi
 
 . $ZI_HOME/util.zsh
 
-for cmd in curl jq; do
+for cmd in curl jq git; do
     if ! whence $cmd > /dev/null 2>&1; then
         warn "the $cmd executable could not be found"
         # TODO: offer to install the missing package
