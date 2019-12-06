@@ -53,7 +53,7 @@ printlog() {
     output+=$(_printlog_message_type $msgtype)
     output+=$message
     [[ -n $extra ]] && output+=$(_printlog_extra $extra)
-    print "$output"
+    print "$output" >&2
 }
 
 pad() {
