@@ -13,7 +13,7 @@ if whence colors > /dev/null 2>&1; then
     yellow=$fg[yellow]
     normal=$reset_color
     info=$green
-    warn=$yellow
+    warning=$yellow
     error=$red
     extra=$green
 fi
@@ -107,14 +107,14 @@ has_commands() {
             ;;
 
         (1)
-            printlog deps warn \
+            printlog deps warning \
                 "the following command was not found" $pkgs
             print $pkgs
             return 1
             ;;
 
         (*)
-            printlog deps warn \
+            printlog deps warning \
                 "the following commands were not found" "$pkgs"
             print $pkgs
             return 1
