@@ -14,7 +14,7 @@ if whence colors > /dev/null 2>&1; then
     normal=$reset_color
     info=$green
     warn=$yellow
-    err=$red
+    error=$red
     extra=$green
 fi
 
