@@ -80,7 +80,7 @@ _printlog_module() {
 _printlog_message_type() {
     local msgtype=${(U)1}
     local c=${(P)1}
-    local padding=$(pad $msgtype)
+    local padding=$(pad $msgtype 10)
     check_yesno $ZI_COLOR && msgtype="${c}${msgtype}${normal}"
     print "${msgtype}${padding}"
 }
