@@ -107,13 +107,15 @@ has_commands() {
             ;;
 
         (1)
-            warn "the following command was not found: $pkgs"
+            printlog deps warn \
+                "the following command was not found" $pkgs
             print $pkgs
             return 1
             ;;
 
         (*)
-            warn "the following commands were not found: $pkgs"
+            printlog deps warn \
+                "the following commands were not found" "$pkgs"
             print $pkgs
             return 1
             ;;
