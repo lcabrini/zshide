@@ -5,6 +5,7 @@
 ZI_SILENT=no
 ZI_COLOR=yes
 
+# TODO: wouldn't it be better to check if ZI_COLOR is set?
 if whence colors > /dev/null 2>&1; then
     white=$fg[white]
     red=$fg[red]
