@@ -7,7 +7,7 @@ if [ -z "$RUNNING_ZSH" ]; then
         zsh $0 "$@"
         exit $?
     else
-        echo "Z Shell is not installed. Aborting."
+        echo "Z Shell is not installed. Aborting." >&2
     fi
 fi
 
@@ -21,8 +21,15 @@ util=$PWD/lib/util.zsh
 if [[ -f $util ]]; then
     . $util
 else
-    print "Cannot find the util script. Aborting."
+    print "Cannot find the util script. Aborting." >&2
     exit 1
+fi
+
+os=$(detect_os)
+if [[ -n $os ]]; then
+    printlog install info "detected OS" $os
+else
+    printlog install warning "could not detect OS"
 fi
 
 printlog install info "checking for dependencies"
