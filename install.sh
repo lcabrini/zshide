@@ -11,30 +11,11 @@ if [ -z "$RUNNING_ZSH" ]; then
     fi
 fi
 
-exit
-
 # Installation locations. You can change to suit your preferences.
 PREFIX=$HOME
 ZI_HOME=$PREFIX/.zshide
 BINDIR=$PREFIX/bin
 TPLDIR=$ZI_HOME/t
-
-autoload -U colors
-colors
-
-white=$fg[white]
-red=$fg[red]
-yellow=$fg[yellow]
-green=$fg[green]
-blue=$fg[blue]
-r=$reset_color
-
-info() { print "I: ${white}$1$r" > /dev/stderr }
-warn() { print "W: ${yellow}$1$r" > /dev/stderr }
-err() { print "E: ${red}$1$r" > /dev/stderr }
-inst() { print "    ... installing ${green}$1$r" }
-deps() { print "    ... ${blue}$1$r ${green}SUCCESS$r" > /dev/stderr }
-depf() { print "    ... ${blue}$1$r ${red}FAIL$r" > /dev/stderr }
 
 packages=
 info "checking for dependencies"
