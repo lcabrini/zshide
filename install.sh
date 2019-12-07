@@ -17,6 +17,16 @@ ZI_HOME=$PREFIX/.zshide
 BINDIR=$PREFIX/bin
 TPLDIR=$ZI_HOME/t
 
+util=$PWD/lib/util.zsh
+if [[ -f $util ]]; then
+    . $util
+else
+    print "Cannot find the util script. Aborting."
+    exit 1
+fi
+
+exit
+
 packages=
 info "checking for dependencies"
 for dep in jq; do
