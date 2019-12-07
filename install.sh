@@ -1,12 +1,16 @@
 #! /bin/sh
 
-# zshide: the Zsh IDE
-#
-# This script installs zshide. It should not depend on any other script
-# and as far as possible only depend on standard tools.
-#
-# Author: Lorenzo Cabrini <lorenzo.cabrini@gmail.com>
+if [ -z "$RUNNING_ZSH" ]; then
+    which zsh > /dev/null 2>&1
+    if [ "$?" -eq "0" ]; then
+        export RUNNING_ZSH=1
+        zsh $0 "$@"
+    else
+        echo "Z Shell is not installed. Aborting."
+    fi
+fi
 
+exit
 # Installation locations. You can change to suit your preferences.
 PREFIX=$HOME
 ZI_HOME=$PREFIX/.zshide
