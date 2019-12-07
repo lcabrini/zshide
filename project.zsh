@@ -27,7 +27,7 @@ project_create() {
             eval local project_${(L)key}=\'$val\'
         else
             #err "cannot handle $arg: is not a key-value pair"
-            printlog project warn "argument is not key-value pair" $arg
+            printlog project warning "argument is not key-value pair" $arg
             # TODO: for now we just continue. Should we return?
             continue
         fi
@@ -37,8 +37,8 @@ project_create() {
         #err "no project specified"
         printlog project error "no project specified"
         return 1
-    elif [[ ! -f $ZI_HOME/project-$project_type.zsh ]]; then
-        err "unknown project type: $project_type"
+    elif [[ ! -f $ZI_HOME/proj-$project_type.zsh ]]; then
+        printlog project error "unknown project type" $project_type
         return 1
     fi
 
@@ -47,15 +47,18 @@ project_create() {
         return 1
     fi
 
-    exit 
-
+    . $ZI_HOME/github.zsh
     if github_has_repo $project_name; then
-        err "project already exists on GitHub"
+        printlog github error "project already exists on GitHub" \
+            $project_name
         return 1
     elif [[ -d $PROJECTS_DIR/$project_name ]]; then
-        err "local project already exists"
+        printlog project error "local project already exists" \
+            $project_name
         return 1
     fi
+
+    exit
 
     info "Creating project $project_name"
     local remote
@@ -70,6 +73,3 @@ project_create() {
 
     # TODO: continue here
 }
-
-has_commands ls foo bar > /dev/null
-project_create
