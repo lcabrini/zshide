@@ -1,4 +1,4 @@
-#! /bin/zsh
+#! /bin/sh
 
 # zshide: the Zsh IDE
 #
