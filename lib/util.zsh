@@ -121,3 +121,34 @@ has_commands() {
             ;;
     esac
 }
+
+detect_os() {
+    local sys
+
+    case $(uname) in
+        (Linux)
+            sys=$(_detect_linux)
+            ret=$?
+            ;;
+
+        (*)
+            sys=
+            ret=0
+            ;;
+    esac
+
+    print $sys
+    return $ret
+}
+
+_detect_linux() {
+    if [[ -f /etc/fedora-release ]]; then
+        print fedora
+        return 0
+    elif [[ -f /etc/centos-release ]]; then
+        print centos
+        return 0
+    else
+        return 1
+    fi
+}
