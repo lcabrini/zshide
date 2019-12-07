@@ -25,18 +25,10 @@ else
     exit 1
 fi
 
-exit
+printlog install info "checking for dependencies"
+missing=$(has_commands jq)
 
-packages=
-info "checking for dependencies"
-for dep in jq; do
-    if [[ -n $(whence $dep) ]]; then
-        deps $dep
-    else
-        depf $dep
-        packages="$dep $packages"
-    fi
-done
+exit
 
 # TODO: message is Fedora specific.
 read -rd '' instmsg <<EOF
