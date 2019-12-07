@@ -5,7 +5,7 @@ if [ -z "$RUNNING_ZSH" ]; then
     if [ "$?" -eq "0" ]; then
         export RUNNING_ZSH=1
         zsh $0 "$@"
-        exit 0
+        exit $?
     else
         echo "Z Shell is not installed. Aborting."
     fi
