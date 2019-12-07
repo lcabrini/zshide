@@ -41,7 +41,9 @@ case $cmd in
         #PROJECT_TYPE=$2
         #PROJECT_NAME=$3
         #PROJECT_PATH=$PROJECTS_DIR/$PROJECT_NAME
-        zsh $ZI_HOME/new-project.zsh "$@"
+        #zsh $ZI_HOME/new-project.zsh "$@"
+        . $ZI_HOME/project.zsh
+        project_create "$@"
         ;;
 
     (dp|delete-project)
