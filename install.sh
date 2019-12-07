@@ -5,12 +5,14 @@ if [ -z "$RUNNING_ZSH" ]; then
     if [ "$?" -eq "0" ]; then
         export RUNNING_ZSH=1
         zsh $0 "$@"
+        exit 0
     else
         echo "Z Shell is not installed. Aborting."
     fi
 fi
 
 exit
+
 # Installation locations. You can change to suit your preferences.
 PREFIX=$HOME
 ZI_HOME=$PREFIX/.zshide
