@@ -5,8 +5,10 @@
 ZI_SILENT=no
 ZI_COLOR=yes
 
-# TODO: wouldn't it be better to check if ZI_COLOR is set?
-if whence colors > /dev/null 2>&1; then
+if check_yesno $ZI_COLOR; then
+    autoload -U colors
+    colors
+
     WHITE=$fg[white]
     RED=$fg[red]
     BLUE=$fg[blue]
