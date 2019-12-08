@@ -24,13 +24,12 @@ is available in your PATH, you can try to run this installer again.
 EOF
 
 if [ -z "$RUNNING_ZSH" ]; then
-    which zeesh > /dev/null 2>&1
+    which zsh > /dev/null 2>&1
     if [ "$?" -eq "0" ]; then
         export RUNNING_ZSH=1
         zsh $0 "$@"
         exit $?
     else
-        #echo "Z Shell is not installed. Aborting." >&2
         echo "$no_zsh" >&2
         exit 1
     fi
