@@ -52,14 +52,7 @@ fi
 ZI_COLOR=no
 DEST=foo
 
-read -rd '' helpmsg <<EOF
-usage $(basename $0) [options]
-
-OPTIONS
-    -c, --color         use colors in output
-    -h, --help          show this help message
-EOF
-
+show_help=no
 while (($#)); do
     arg=$1
     shift
@@ -80,8 +73,12 @@ while (($#)); do
             ;;
 
         (-h|--help)
-            print $helpmsg >&2
-            exit 0
+            show_help=yes
+            #print $helpmsg >&2
+            #print_option c color "enable color output"
+            #print_option d destination "temporaty option, to be removed"
+            #print_option h help "show this help message"
+            #exit 0
             ;;
 
         (*)
@@ -91,7 +88,13 @@ while (($#)); do
     esac
 done
 
-print "DESTINATION: $DEST"
+if check_yesno $show_help; then
+    print_usage $(basename $0)
+    print_option c color "enable color output"
+    print_option d destination "temporaty option, to be removed"
+    print_option h help "show this help message"
+    exit 0
+fi
 
 os=$(detect_os)
 if [[ -n $os ]]; then
