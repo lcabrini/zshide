@@ -3,7 +3,7 @@
 
 # TODO: these are just here for testing
 ZI_SILENT=no
-ZI_COLOR=yes
+#ZI_COLOR=yes
 
 check_yesno() {
     var=${(L)1}
@@ -30,6 +30,8 @@ printlog() {
     if check_yesno $ZI_SILENT; then
         return 0
     fi
+
+    _setup_colors
 
     local module=$1
     local msgtype=${(U)2}
@@ -108,31 +110,33 @@ _detect_linux() {
     fi
 }
 
-if check_yesno $ZI_COLOR; then
-    autoload -U colors
-    colors
+_setup_colors() {
+    if check_yesno $ZI_COLOR; then
+        autoload -U colors
+        colors
 
-    WHITE=$fg[white]
-    RED=$fg[red]
-    BLUE=$fg[blue]
-    GREEN=$fg[green]
-    YELLOW=$fg[yellow]
-    RESET=$reset_color
-    MODULE=$BLUE
-    INFO=$GREEN
-    WARNING=$YELLOW
-    ERROR=$RED
-    EXTRA=$GREEN
-else
-    WHITE=
-    RED=
-    BLUE=
-    GREEN=
-    YELLOW=
-    RESET=
-    MODULE=
-    INFO=
-    WARNING=
-    ERROR=
-    EXTRA=
-fi
+        WHITE=$fg[white]
+        RED=$fg[red]
+        BLUE=$fg[blue]
+        GREEN=$fg[green]
+        YELLOW=$fg[yellow]
+        RESET=$reset_color
+        MODULE=$BLUE
+        INFO=$GREEN
+        WARNING=$YELLOW
+        ERROR=$RED
+        EXTRA=$GREEN
+    else
+        WHITE=
+        RED=
+        BLUE=
+        GREEN=
+        YELLOW=
+        RESET=
+        MODULE=
+        INFO=
+        WARNING=
+        ERROR=
+        EXTRA=
+    fi
+}
