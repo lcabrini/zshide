@@ -52,6 +52,14 @@ fi
 ZI_COLOR=no
 DEST=foo
 
+read -rd '' helpmsg <<EOF
+usage $(basename $0) [options]
+
+OPTIONS
+    -c, --color         use colors in output
+    -h, --help          show this help message
+EOF
+
 while (($#)); do
     arg=$1
     shift
@@ -69,6 +77,11 @@ while (($#)); do
                 printlog install error "no destination specified"
                 exit 1
             fi
+            ;;
+
+        (-h|--help)
+            print $helpmsg >&2
+            exit 0
             ;;
 
         (*)
