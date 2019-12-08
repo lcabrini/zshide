@@ -44,6 +44,17 @@ printlog() {
     print -f $fmt $mod $typ $output >&2
 }
 
+print_option() {
+    _setup_colors
+
+    shopt="${YELLOW}-${1}${RESET}"
+    lopt="${YELLOW}--${2}${RESET}"
+    desc="${GREEN}${3}${RESET}"
+
+    print -f "  %4s, %-20s %s\n" $shopt $lopt $desc
+
+}
+
 has_commands() {
     local -a pkgs
     local cmd
