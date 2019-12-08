@@ -15,10 +15,10 @@ if check_yesno $ZI_COLOR; then
     GREEN=$fg[green]
     YELLOW=$fg[yellow]
     NORMAL=$reset_color
-    INFO=$green
-    WARNING=$yellow
-    ERROR=$red
-    EXTRA=$green
+    INFO=$GREEN
+    WARNING=$YELLOW
+    ERROR=$RED
+    EXTRA=$GREEN
 else
     WHITE=
     RED=
