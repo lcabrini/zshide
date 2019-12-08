@@ -1,10 +1,6 @@
 # TODO: remove this when done
 . ~/.zshide/util.zsh
 
-# TODO: these are just here for testing
-ZI_SILENT=no
-#ZI_COLOR=yes
-
 check_yesno() {
     var=${(L)1}
     if [[ -z $var ]]; then
@@ -42,10 +38,10 @@ printlog() {
     typ="${(P)msgtype}${msgtype}${RESET}"
     output=${message}
     [[ -n $extra ]] && output+=": ${EXTRA}$extra${RESET}"
+    # TODO: is there a better way to do this. Escape sequences suck...
     check_yesno $ZI_COLOR && fmt='%-20s %-20s ' || fmt='%-10s %-10s '
     fmt+='%s\n'
     print -f $fmt $mod $typ $output >&2
-    #print -f "%-10s %-10s %s\n" $mod $typ $output >&2
 }
 
 has_commands() {
