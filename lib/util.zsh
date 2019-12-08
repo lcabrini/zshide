@@ -58,28 +58,6 @@ pad() {
     print "$output"
 }
 
-_printlog_module() {
-    local module=${(L)1}
-    local output="[$module]"
-    local padding=$(pad $output 10)
-    check_yesno $ZI_COLOR && output="${blue}${output}${normal}"
-    print "${output}${padding}"
-}
-
-_printlog_message_type() {
-    local msgtype=${(U)1}
-    local c=${(P)1}
-    local padding=$(pad $msgtype 10)
-    check_yesno $ZI_COLOR && msgtype="${c}${msgtype}${normal}"
-    print "${msgtype}${padding}"
-}
-
-_printlog_extra() {
-    local message=": $1"
-    check_yesno $ZI_COLOR && message="${green}${message}${normal}"
-    print "$message"
-}
-
 has_commands() {
     local -a pkgs
     local cmd
