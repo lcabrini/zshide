@@ -14,7 +14,7 @@ if check_yesno $ZI_COLOR; then
     BLUE=$fg[blue]
     GREEN=$fg[green]
     YELLOW=$fg[yellow]
-    NORMAL=$reset_color
+    RESET=$reset_color
     MODULE=$BLUE
     INFO=$GREEN
     WARNING=$YELLOW
@@ -26,7 +26,7 @@ else
     BLUE=
     GREEN=
     YELLOW=
-    NORMAL=
+    RESET=
     MODULE=
     INFO=
     WARNING=
