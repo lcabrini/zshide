@@ -43,19 +43,6 @@ printlog() {
     print -f "%10s %10s %s\n" $mod $typ $output >&2
 }
 
-pad() {
-    local str=$1
-    local width=$2
-    local output=
-    local strlen=${#str}
-
-    for i in {1..$((width - strlen))}; do
-        output+=' '
-    done
-
-    print "$output"
-}
-
 has_commands() {
     local -a pkgs
     local cmd
