@@ -45,6 +45,8 @@ printlog() {
 }
 
 print_usage() {
+    _setup_colors
+
     print "usage: ${WHITE}${1}${RESET}"
     print
     print "${BLUE}OPTIONS${RESET}"
@@ -127,7 +129,7 @@ _setup_colors() {
         autoload -U colors
         colors
 
-        WHITE=$fg[white]
+        WHITE=$fg_bold[white]
         RED=$fg[red]
         BLUE=$fg[blue]
         GREEN=$fg[green]
