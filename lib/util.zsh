@@ -51,7 +51,7 @@ print_option() {
     lopt="${YELLOW}--${2}${RESET}"
     desc="${GREEN}${3}${RESET}"
 
-    print -f "  %4s, %-20s %s\n" $shopt $lopt $desc
+    print -f "  %4s, %-30s %s\n" $shopt $lopt $desc
 
 }
 
