@@ -40,7 +40,10 @@ printlog() {
     typ="${(P)msgtype}${msgtype}${RESET}"
     output=${message}
     [[ -n $extra ]] && output+=": ${EXTRA}$extra${RESET}"
-    print -f "%10s %10s %s\n" $mod $typ $output >&2
+    check_yesno $ZI_COLOR && fmt='%-20s %-20s ' || fmt='%-10s %-10s '
+    fmt+='%s\n'
+    print -f $fmt $mod $typ $output >&2
+    #print -f "%-10s %-10s %s\n" $mod $typ $output >&2
 }
 
 has_commands() {
