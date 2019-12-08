@@ -1,13 +1,38 @@
 #! /bin/sh
 
+read -rd '' no_zsh <<EOF
+Z Shell could not be found.
+
+I was not able to find the zsh executable anywhere in your PATH, but
+zshide requires this shell to be installed on your system. If you are
+sure that you have zsh installed, you may need to update your PATH to
+include the location where the zsh executable is installed.
+
+If you haven't yet installed Z Shell, you can do so (requires you to be
+root or to have sudo access to install packages). You might also be able
+to build zsh yourself.
+
+To install on Fedora Linux:
+  # dnf install zsh
+To install on Red Hat or Cent OS:
+  # yum install zsh
+To install on Debian or Ubuntu:
+  # apt install zsh
+
+Once you have ensured that Z Shell is installed and that the zsh command
+is available in your PATH, you can try to run this installer again.
+EOF
+
 if [ -z "$RUNNING_ZSH" ]; then
-    which zsh > /dev/null 2>&1
+    which zeesh > /dev/null 2>&1
     if [ "$?" -eq "0" ]; then
         export RUNNING_ZSH=1
         zsh $0 "$@"
         exit $?
     else
-        echo "Z Shell is not installed. Aborting." >&2
+        #echo "Z Shell is not installed. Aborting." >&2
+        echo "$no_zsh" >&2
+        exit 1
     fi
 fi
 
