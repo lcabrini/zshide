@@ -7,16 +7,27 @@ ZI_COLOR=yes
 
 # TODO: wouldn't it be better to check if ZI_COLOR is set?
 if whence colors > /dev/null 2>&1; then
-    white=$fg[white]
-    red=$fg[red]
-    blue=$fg[blue]
-    green=$fg[green]
-    yellow=$fg[yellow]
-    normal=$reset_color
-    info=$green
-    warning=$yellow
-    error=$red
-    extra=$green
+    WHITE=$fg[white]
+    RED=$fg[red]
+    BLUE=$fg[blue]
+    GREEN=$fg[green]
+    YELLOW=$fg[yellow]
+    NORMAL=$reset_color
+    INFO=$green
+    WARNING=$yellow
+    ERROR=$red
+    EXTRA=$green
+else
+    WHITE=
+    RED=
+    BLUE=
+    GREEN=
+    YELLOW=
+    NORMAL=
+    INFO=
+    WARNING=
+    ERROR=
+    EXTRA=
 fi
 
 check_yesno() {
