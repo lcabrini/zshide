@@ -44,6 +44,12 @@ printlog() {
     print -f $fmt $mod $typ $output >&2
 }
 
+print_usage() {
+    print "usage: ${WHITE}${1}${RESET}"
+    print
+    print "${BLUE}OPTIONS${RESET}"
+}
+
 print_option() {
     _setup_colors
 
@@ -52,7 +58,6 @@ print_option() {
     desc="${GREEN}${3}${RESET}"
 
     print -f "  %4s, %-30s %s\n" $shopt $lopt $desc
-
 }
 
 has_commands() {
