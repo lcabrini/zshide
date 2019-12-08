@@ -5,35 +5,6 @@
 ZI_SILENT=no
 ZI_COLOR=yes
 
-if check_yesno $ZI_COLOR; then
-    autoload -U colors
-    colors
-
-    WHITE=$fg[white]
-    RED=$fg[red]
-    BLUE=$fg[blue]
-    GREEN=$fg[green]
-    YELLOW=$fg[yellow]
-    RESET=$reset_color
-    MODULE=$BLUE
-    INFO=$GREEN
-    WARNING=$YELLOW
-    ERROR=$RED
-    EXTRA=$GREEN
-else
-    WHITE=
-    RED=
-    BLUE=
-    GREEN=
-    YELLOW=
-    RESET=
-    MODULE=
-    INFO=
-    WARNING=
-    ERROR=
-    EXTRA=
-fi
-
 check_yesno() {
     var=${(L)1}
     if [[ -z $var ]]; then
@@ -69,13 +40,8 @@ printlog() {
     output+=$(pad $module 10)
     output+="${(P)2}${msgtype}${RESET}"
     output+=$(pad $msgtype 10)
-    [[ -n $extra ]] && output+=": ${EXTRA}$message${RESET}"
-
-
-    #output=$(_printlog_module $module)
-    #output+=$(_printlog_message_type $msgtype)
-    #output+=$message
-    #[[ -n $extra ]] && output+=$(_printlog_extra $extra)
+    output+=${message}
+    [[ -n $extra ]] && output+=": ${EXTRA}$extra${RESET}"
     print "$output" >&2
 }
 
@@ -175,3 +141,32 @@ _detect_linux() {
         return 1
     fi
 }
+
+if check_yesno $ZI_COLOR; then
+    autoload -U colors
+    colors
+
+    WHITE=$fg[white]
+    RED=$fg[red]
+    BLUE=$fg[blue]
+    GREEN=$fg[green]
+    YELLOW=$fg[yellow]
+    RESET=$reset_color
+    MODULE=$BLUE
+    INFO=$GREEN
+    WARNING=$YELLOW
+    ERROR=$RED
+    EXTRA=$GREEN
+else
+    WHITE=
+    RED=
+    BLUE=
+    GREEN=
+    YELLOW=
+    RESET=
+    MODULE=
+    INFO=
+    WARNING=
+    ERROR=
+    EXTRA=
+fi
