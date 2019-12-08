@@ -25,6 +25,37 @@ else
     exit 1
 fi
 
+ZI_COLOR=no
+DEST=foo
+
+while (($#)); do
+    arg=$1
+    shift
+
+    case $arg in
+        (-c|--color)
+            ZI_COLOR=yes
+            ;;
+
+        (-d|--destination)
+            if [[ -n $1 ]]; then
+                DEST=$1
+                shift
+            else
+                printlog install error "no destination specified"
+                exit 1
+            fi
+            ;;
+
+        (*)
+            printlog install error "unknown argument" $arg
+            exit 1
+            ;;
+    esac
+done
+
+print "DESTINATION: $DEST"
+
 os=$(detect_os)
 if [[ -n $os ]]; then
     printlog install info "detected OS" $os
