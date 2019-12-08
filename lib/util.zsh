@@ -32,17 +32,15 @@ printlog() {
     fi
 
     local module=$1
-    local msgtype=$2
+    local msgtype=${(U)2}
     local message=$3
     local extra=$4
 
-    output="${MODULE}${module}${RESET}"
-    output+=$(pad $module 10)
-    output+="${(P)2}${msgtype}${RESET}"
-    output+=$(pad $msgtype 10)
-    output+=${message}
+    mod="${MODULE}${module}${RESET}"
+    typ="${(P)msgtype}${msgtype}${RESET}"
+    output=${message}
     [[ -n $extra ]] && output+=": ${EXTRA}$extra${RESET}"
-    print "$output" >&2
+    print -f "%10s %10s %s\n" $mod $typ $output >&2
 }
 
 pad() {
