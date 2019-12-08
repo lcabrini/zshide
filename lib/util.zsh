@@ -65,10 +65,17 @@ printlog() {
     local message=$3
     local extra=$4
 
-    output=$(_printlog_module $module)
-    output+=$(_printlog_message_type $msgtype)
-    output+=$message
-    [[ -n $extra ]] && output+=$(_printlog_extra $extra)
+    output="${MODULE}${module}${RESET}"
+    output+=$(pad $module 10)
+    output+="${(P)2}${msgtype}${RESET}"
+    output+=$(pad $msgtype 10)
+    [[ -n $extra ]] && output+=": ${EXTRA}$message${RESET}"
+
+
+    #output=$(_printlog_module $module)
+    #output+=$(_printlog_message_type $msgtype)
+    #output+=$message
+    #[[ -n $extra ]] && output+=$(_printlog_extra $extra)
     print "$output" >&2
 }
 
