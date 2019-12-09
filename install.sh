@@ -50,10 +50,11 @@ else
 fi
 
 ZI_COLOR=no
-DEST=foo
+#DEST=foo
 
 setup_colors
 show_help=no
+interactive=yes
 while (($#)); do
     arg=$1
     shift
@@ -64,15 +65,15 @@ while (($#)); do
             setup_colors
             ;;
 
-        (-d|--destination)
-            if [[ -n $1 ]]; then
-                DEST=$1
-                shift
-            else
-                printlog install error "no destination specified"
-                exit 1
-            fi
-            ;;
+        #(-d|--destination)
+        #    if [[ -n $1 ]]; then
+        #        DEST=$1
+        #        shift
+        #    else
+        #        printlog install error "no destination specified"
+        #        exit 1
+        #    fi
+        #    ;;
 
         (-h|--help)
             show_help=yes
@@ -82,6 +83,9 @@ while (($#)); do
             #print_option h help "show this help message"
             #exit 0
             ;;
+
+        (-I|non-interactive)
+            interactive=no
 
         (*)
             printlog install error "unknown argument" $arg
@@ -93,8 +97,9 @@ done
 if check_yesno $show_help; then
     print_usage $(basename $0)
     print_option c color "enable color output"
-    print_option d destination "temporaty option, to be removed"
+    #print_option d destination "temporaty option, to be removed"
     print_option h help "show this help message"
+    print_option I non-interactive "don't use interactive"
     exit 0
 fi
 
@@ -115,6 +120,21 @@ fi
 # TODO: if we need to check for any global dependencies, we should do it
 # here.
 
+if [[ -d $ZI_HOME ]]; then
+    printlog install warning "the zshide directory already exits"
+else
+    mkdir $ZI_HOME > /dev/null 2>&1
+    if [[ $? -eq 0 ]]; then
+        printlog install info "created zshide directory" $ZI_HOME
+    else
+        printlog install error "unable to create zshide directory" $ZI_HOME
+        # TODO: find out what caused it to fail and offer options, if
+        # possible.
+        exit 1
+    fi
+fi
+
+exit
 
 # This is only a dependency if using GitHub, so it should come later.
 #printlog install info "checking for dependencies"
