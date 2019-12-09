@@ -105,49 +105,61 @@ else
     printlog install warning "could not detect OS"
 fi
 
-printlog install info "checking for dependencies"
-missing=$(has_commands jq)
-
-exit
-
-# TODO: message is Fedora specific.
-read -rd '' instmsg <<EOF
-You are missing some required packages. If you have sudo access on this
-system, they can be installed right now.
-
-Otherwise you will need to manually install them with:
-  # dnf install $packages
-
-Do you want to procede to install (Y/N)?
-EOF
-
-if [[ -n $packages ]]; then
-    warn "required dependencies missing"
-    print $instmsg
-    read ans
-    ans=$(print $ans | tr A-Z a-z)
-    case $ans in
-        (n|no)
-            warn "aborting installation"
-            exit 1
-            ;;
-
-        (y|yes)
-            # TODO: Fedora specific
-            sudo dnf install $packages
-            res=$?
-            if [[ $res -ne 0 ]]; then
-                err "error installing dependencies"
-                exit 1
-            fi
-            ;;
-
-        (*)
-            err "unrecognized answer: $ans. Aborting ..."
-            exit 1
-            ;;
-    esac
+pkgman=$(get_package_install_command $os)
+if [[ $? -eq 0 ]]; then
+    printlog install info "got $os package install command" $pkgman
+else
+    printlog install error "could not get $os package install command"
 fi
+
+# TODO: if we need to check for any global dependencies, we should do it
+# here.
+
+
+# This is only a dependency if using GitHub, so it should come later.
+#printlog install info "checking for dependencies"
+#missing=$(has_commands jq)
+#
+#exit
+#
+## TODO: message is Fedora specific.
+#read -rd '' instmsg <<EOF
+#You are missing some required packages. If you have sudo access on this
+#system, they can be installed right now.
+#
+#Otherwise you will need to manually install them with:
+#  # dnf install $packages
+#
+#Do you want to procede to install (Y/N)?
+#EOF
+#
+#if [[ -n $packages ]]; then
+#    warn "required dependencies missing"
+#    print $instmsg
+#    read ans
+#    ans=$(print $ans | tr A-Z a-z)
+#    case $ans in
+#        (n|no)
+#            warn "aborting installation"
+#            exit 1
+#            ;;
+#
+#        (y|yes)
+#            # TODO: Fedora specific
+#            sudo dnf install $packages
+#            res=$?
+#            if [[ $res -ne 0 ]]; then
+#                err "error installing dependencies"
+#                exit 1
+#            fi
+#            ;;
+#
+#        (*)
+#            err "unrecognized answer: $ans. Aborting ..."
+#            exit 1
+#            ;;
+#    esac
+#fi
 
 if [[ ! -d $BINDIR ]]; then
     info "$BINDIR does not exist, creating it"
