@@ -146,6 +146,11 @@ else
     fi
 fi
 
+for mod in modules/*.zsh; do
+    . $mod
+    ${mod:t:r}_setup
+done
+
 exit
 
 # This is only a dependency if using GitHub, so it should come later.
