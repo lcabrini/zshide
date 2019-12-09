@@ -44,6 +44,47 @@ printlog() {
     print -f $fmt $mod $typ $output >&2
 }
 
+read_setting() {
+    key=$1
+    def=$2
+    rc=$ZI_HOME/zshiderc
+    if [[ ! -f $rc ]]; then
+        eval "$key=$def"
+    elif [[ -z $(cat $rc | grep "^$key") ]]; then
+        eval "$key="
+    else
+        val=$(cat $rc | grep "^$key" | cut -d'=' -f2)
+        eval "$key=$val"
+    fi
+
+    print $val
+}
+
+write_setting() {
+    key=$1
+    val=$2
+    rc=$ZI_HOME/zshiderc
+    test -f $rc || touch $rc
+    if [[ -z $(grep "^$key=" $rc) ]]; then
+        print "$key=$val" >> $rc
+    else
+        tmp=$(mktemp -t zshide-$USER.XXXXXX)
+        grep --invert-match "^$key=" $rc > $tmp
+        print "$key=$val" >> $tmp
+        mv $tmp $rc
+    fi
+}
+
+delete_setting() {
+    key=$1
+    rc=$ZI_HOME/zshiderc
+    if [[ -f $rc && -n $(grep "^$key=" $rc) ]]; then
+        tmp=$(mktemp -t zshide-$USER.XXXXX)
+        grep --invert-match "^$key=" $rc > $tmp
+        mv $tmp $rc
+    fi
+}
+
 print_usage() {
     #_setup_colors
 
