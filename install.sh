@@ -134,6 +134,18 @@ else
     fi
 fi
 
+if [[ -f $ZI_HOME/zshiderc ]]; then
+    printlog install warning "zshiderc already exists"
+else
+    touch $ZI_HOME/zshiderc > /dev/null 2>&1
+    if [[ $? -eq 0 ]]; then
+        printlog install info "created zshiderc"
+    else
+        printlog install error "unable to create zshiderc"
+        exit 1
+    fi
+fi
+
 exit
 
 # This is only a dependency if using GitHub, so it should come later.
