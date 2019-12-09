@@ -27,7 +27,7 @@ printlog() {
         return 0
     fi
 
-    _setup_colors
+    #_setup_colors
 
     local module=$1
     local msgtype=${(U)2}
@@ -45,7 +45,7 @@ printlog() {
 }
 
 print_usage() {
-    _setup_colors
+    #_setup_colors
 
     print "usage: ${WHITE}${1}${RESET}" >&2
     print >&2
@@ -53,7 +53,7 @@ print_usage() {
 }
 
 print_option() {
-    _setup_colors
+    #_setup_colors
 
     shopt="${YELLOW}-${1}${RESET}"
     lopt="${YELLOW}--${2}${RESET}"
@@ -125,7 +125,7 @@ _detect_linux() {
     fi
 }
 
-_setup_colors() {
+setup_colors() {
     if check_yesno $ZI_COLOR; then
         autoload -U colors
         colors

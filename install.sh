@@ -52,6 +52,7 @@ fi
 ZI_COLOR=no
 DEST=foo
 
+setup_colors
 show_help=no
 while (($#)); do
     arg=$1
@@ -60,6 +61,7 @@ while (($#)); do
     case $arg in
         (-c|--color)
             ZI_COLOR=yes
+            setup_colors
             ;;
 
         (-d|--destination)
