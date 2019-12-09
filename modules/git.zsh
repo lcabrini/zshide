@@ -4,20 +4,26 @@ R_GIT_ZI_HOME=99
 [[ $_zi_git == yes ]] && return $R_GIT_OK
 _zi_git=yes
 
-if [[ -z $ZI_HOME ]]; then
-    print "E: ZI_HOME not set, unable to continue" >&2
-    return $R_GIT_ZI_HOME
-elif [[ ! -d $ZI_HOME ]]; then
-    print "E: cannot find ZI_HOME, unable to continue" >&2
-    return $R_GIT_ZI_HOME
-fi
+#if [[ -z $ZI_HOME ]]; then
+#    print "E: ZI_HOME not set, unable to continue" >&2
+#    return $R_GIT_ZI_HOME
+#elif [[ ! -d $ZI_HOME ]]; then
+#    print "E: cannot find ZI_HOME, unable to continue" >&2
+#    return $R_GIT_ZI_HOME
+#fi
+#
+#. $ZI_HOME/util.zsh
+#
+#if ! pkgs=has_commands git; then
+#    # TODO: offer to install missing packages
+#    return 1
+#fi
 
-. $ZI_HOME/util.zsh
-
-if ! pkgs=has_commands git; then
-    # TODO: offer to install missing packages
-    return 1
-fi
+git_setup() {
+    [[ $did_git_setup == yes ]] && return 0
+    print "in git setup"
+    did_git_setup=yes
+}
 
 git_pull() {
     local $remote=$1
@@ -39,5 +45,5 @@ git_pull() {
     else
         err "failed to clone $project"
         return 1
-    }
+    fi
 }

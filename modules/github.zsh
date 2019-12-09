@@ -47,6 +47,15 @@ CURL="curl -s -i"
 
 #. $ZI_HOME/github-whoami.zsh
 
+github_setup() {
+    # TODO: can I find a better way to deal with dependencies?
+    for dep in git; do
+        . modules/$dep.zsh
+        ${dep}_setup
+    done
+    print "in github_setup"
+}
+
 github_whoami() {
     local username=$(read_setting GITHUB_LOGIN)
     if [[ -n $username ]]; then
