@@ -125,6 +125,21 @@ _detect_linux() {
     fi
 }
 
+get_package_install_command() {
+    os=$1
+
+    case $os in
+        (fedora)
+            print "dnf install"
+            return 0
+            ;;
+
+        (*)
+            return 1
+            ;;
+    esac
+}
+
 setup_colors() {
     if check_yesno $ZI_COLOR; then
         autoload -U colors
