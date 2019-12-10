@@ -283,4 +283,16 @@ missing_commands_info() {
 
 }
 
+# https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
+# (ajneu's answer)
+can_sudo() {
+    local ret
 
+    if ret=$(sudo -nv 2>&1); then
+        return $R_OK
+    elif [[ $ret =~ ^sudo: ]]; then
+        return $R_OK
+    else
+        return 1
+    fi
+}
