@@ -81,6 +81,10 @@ github_install() {
         return
     fi
 
+    if ! pkgs=$(has_commands jq); then
+        missing_commands_info github ${=pkgs}
+    fi
+
     if [[ -z $(read_setting GITHUB_TOKEN) ]]; then
         github_token_info
         printprompt "Enter your GitHub token"
