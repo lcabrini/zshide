@@ -4,46 +4,46 @@ E_ZI_HOME=99
 [[ $_zi_github == yes ]] && return $E_OK
 _zi_github=yes
 
-if [[ -z $ZI_HOME ]]; then
-    print "E: ZI_HOME not set, unable to continue" >&2
-    exit $E_ZI_HOME
-elif [[ ! -d $ZI_HOME ]]; then
-    print "E: cannot find ZI_HOME, unable to continue" >&2
-    exit $E_ZI_HOME
-fi
+#if [[ -z $ZI_HOME ]]; then
+#    print "E: ZI_HOME not set, unable to continue" >&2
+#    exit $E_ZI_HOME
+#elif [[ ! -d $ZI_HOME ]]; then
+#    print "E: cannot find ZI_HOME, unable to continue" >&2
+#    exit $E_ZI_HOME
+#fi
+#
+#. $ZI_HOME/util.zsh
+#
+#for cmd in curl jq git; do
+#    if ! whence $cmd > /dev/null 2>&1; then
+#        warn "the $cmd executable could not be found"
+#        # TODO: offer to install the missing package
+#        return 1
+#    fi
+#done
 
-. $ZI_HOME/util.zsh
+#GITHUB_TOKEN=$(read_setting GITHUB_TOKEN)
+#if [[ -z $GITHUB_TOKEN ]]; then
+#    err "GitHub token not found."
+#    exit 1
+#fi
 
-for cmd in curl jq git; do
-    if ! whence $cmd > /dev/null 2>&1; then
-        warn "the $cmd executable could not be found"
-        # TODO: offer to install the missing package
-        return 1
-    fi
-done
-
-GITHUB_TOKEN=$(read_setting GITHUB_TOKEN)
-if [[ -z $GITHUB_TOKEN ]]; then
-    err "GitHub token not found."
-    exit 1
-fi
-
-auth="Authorization: token $GITHUB_TOKEN"
-accept="Accept: application/vnd.github.v3+json"
-curl_headers="-H '$auth' -H '$accept'"
+#auth="Authorization: token $GITHUB_TOKEN"
+#accept="Accept: application/vnd.github.v3+json"
+#curl_headers="-H '$auth' -H '$accept'"
 # TODO: remove this when all references to it are gone
-HEADERS="-H '$auth' -H '$accept'"
-github_root=https://api.github.com
+#HEADERS="-H '$auth' -H '$accept'"
+#github_root=https://api.github.com
 # TODO: remove this
-URL="https://api.github.com"
+#URL="https://api.github.com"
 
 # XXX: for now only used by github related functions. Move if needed.
-curl=(curl -s -i 
-    -H "'Authorization: token $GITHUB_TOKEN'"
-    -H "'Accept: application/vnd.github.v3+json'")
-
+#curl=(curl -s -i 
+#    -H "'Authorization: token $GITHUB_TOKEN'"
+#    -H "'Accept: application/vnd.github.v3+json'")
+#
 # TODO: remove this when all references to it are gone
-CURL="curl -s -i"
+#CURL="curl -s -i"
 
 #. $ZI_HOME/github-whoami.zsh
 
@@ -53,7 +53,23 @@ github_setup() {
         . modules/$dep.zsh
         ${dep}_setup
     done
-    print "in github_setup"
+
+    if [[ $(read_setting USE_GIT) == no ]]; then
+        return 0
+    fi
+
+    if ask_yesno "Do you intend to use GitHub?"; then
+        write_setting USE_GITHUB yes
+    else
+        write_setting USE_GITHUB no
+        return
+    fi
+
+    if [[ -z $(read_setting GITHUB_TOKEN) ]]; then
+        print No GitHub token found
+    else
+        print GitHub token found
+    fi
 }
 
 github_whoami() {
