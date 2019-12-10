@@ -1,6 +1,45 @@
 # TODO: remove this when done
 . ~/.zshide/util.zsh
 
+ask_yesno() {
+    p=$1
+    strict=$2
+
+    while true; do
+        print -n "${WHITE}$p${RESET} ${GREEN}(yes/no)?${RESET} "
+        read a
+        case $a in
+            (yes)
+                return 0
+                ;;
+
+            (no)
+                return 1
+                ;;
+
+            (y)
+                if [[ $strict == "yes" ]]; then
+                    print "Please answer yes or no"
+                else
+                    return 0
+                fi
+                ;;
+
+            (n)
+                if [[ $strict == "yes" ]]; then
+                    print "Please answer yes or no"
+                else
+                    return 1
+                fi
+                ;;
+
+            (*)
+                print "Invalid answer. Try again."
+                ;;
+        esac
+    done
+}
+
 check_yesno() {
     var=${(L)1}
     if [[ -z $var ]]; then
