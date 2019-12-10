@@ -264,3 +264,23 @@ setup_colors() {
         EXTRA=
     fi
 }
+
+missing_commands_info() {
+    local mod=$1
+    shift
+    if [[ $mod != zshide ]]; then
+        mod="the $1 module"
+    fi
+
+    (($# == 1)) && pl= || pl=s
+    print "The following command$pl could not be found on your system:"
+    for cmd in $@; do
+        print " * ${YELLOW}${cmd}${RESET}"
+    done
+
+    (($# == 1)) && pl="This command is" || pl="These commands are"
+    print "$pl needed by $mod."
+
+}
+
+
