@@ -21,8 +21,14 @@ _zi_git=yes
 
 git_setup() {
     [[ $did_git_setup == yes ]] && return 0
-    print "in git setup"
     did_git_setup=yes
+
+    if ask_yesno "Do you intend to use git for revision control"; then
+        write_setting USE_GIT yes
+    else
+        write_setting USE_GIT no
+        return 0
+    fi
 }
 
 git_pull() {
