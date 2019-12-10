@@ -47,6 +47,22 @@ _zi_github=yes
 
 #. $ZI_HOME/github-whoami.zsh
 
+github_token_info() {
+    cat <<EOF
+In order to communicate with GitHub you will need to create a token. You
+can do this from:
+    ${YELLOW}https://github.com/settings/tokens${RESET}
+
+You need to have the following scopes enabled:
+    ${YELLOW}delete_repo, repo, user${RESET}
+
+Once you have created your token, enter the token below to use it with
+zshide. If you don't want to add your token now, you can do it later with:
+    ${YELLOW}zi ws GITHUB_TOKEN <your token>${RESET}
+
+EOF
+}
+
 github_install() {
     # TODO: can I find a better way to deal with dependencies?
     for dep in git; do
@@ -66,9 +82,18 @@ github_install() {
     fi
 
     if [[ -z $(read_setting GITHUB_TOKEN) ]]; then
-        print No GitHub token found
+        github_token_info
+        printprompt "Enter your GitHub token"
+        read token
+        # TODO: validate token
+        if [[ -z $token ]]; then
+            printlog github warning "not adding GitHub token"
+        else
+            write_setting GITHUB_TOKEN $token
+            printlog github info "set GitHub token"
+        fi
     else
-        print GitHub token found
+        printlog github info "existing GitHub token found"
     fi
 }
 
