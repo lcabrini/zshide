@@ -1,6 +1,3 @@
-# TODO: remove this when done
-. ~/.zshide/util.zsh
-
 ask_yesno() {
     p=$1
     strict=$2
