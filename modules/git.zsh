@@ -29,6 +29,10 @@ git_install() {
         write_setting USE_GIT no
         return 0
     fi
+
+    if ! pkgs=$(has_commands git); then
+        missing_commands_info git ${=pkgs}
+    fi
 }
 
 git_pull() {
