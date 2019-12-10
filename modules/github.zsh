@@ -47,11 +47,11 @@ _zi_github=yes
 
 #. $ZI_HOME/github-whoami.zsh
 
-github_setup() {
+github_install() {
     # TODO: can I find a better way to deal with dependencies?
     for dep in git; do
         . modules/$dep.zsh
-        ${dep}_setup
+        ${dep}_install
     done
 
     if [[ $(read_setting USE_GIT) == no ]]; then

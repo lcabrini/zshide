@@ -19,7 +19,7 @@ _zi_git=yes
 #    return 1
 #fi
 
-git_setup() {
+git_install() {
     [[ $did_git_setup == yes ]] && return 0
     did_git_setup=yes
 

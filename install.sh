@@ -148,10 +148,10 @@ fi
 
 for mod in modules/*.zsh; do
     . $mod
-    if typeset -f ${mod:t:r}_setup > /dev/null 2>&2; then
-        ${mod:t:r}_setup
+    if typeset -f ${mod:t:r}_install > /dev/null 2>&2; then
+        ${mod:t:r}_install
     else
-        printlog install warning "missing setup function for module" \
+        printlog install warning "missing install function for module" \
             ${mod:t:r}
     fi
 done
