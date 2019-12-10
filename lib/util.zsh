@@ -1,3 +1,8 @@
+R_OK=0
+
+R_YES=0
+R_NO=1
+
 ask_yesno() {
     p=$1
     strict=$2
@@ -7,18 +12,18 @@ ask_yesno() {
         read a
         case $a in
             (yes)
-                return 0
+                return $R_YES
                 ;;
 
             (no)
-                return 1
+                return $R_NO
                 ;;
 
             (y)
                 if [[ $strict == "yes" ]]; then
                     print "Please answer yes or no"
                 else
-                    return 0
+                    return $R_YES
                 fi
                 ;;
 
@@ -26,7 +31,7 @@ ask_yesno() {
                 if [[ $strict == "yes" ]]; then
                     print "Please answer yes or no"
                 else
-                    return 1
+                    return $R_NO
                 fi
                 ;;
 
@@ -40,27 +45,28 @@ ask_yesno() {
 check_yesno() {
     var=${(L)1}
     if [[ -z $var ]]; then
-        return 1
+        return $R_NO
     fi
 
     case $var in
         (y|yes|)
-            return 0
+            return $R_YES
             ;;
 
         (n|no)
-            return 1
+            return $R_NO
             ;;
 
         (*)
-            return 2
+            # TODO: return no by default, it this best behavior?
+            return $R_NO
             ;;
     esac
 }
 
 printlog() {
     if check_yesno $ZI_SILENT; then
-        return 0
+        return $R_OK
     fi
 
     #_setup_colors
@@ -154,7 +160,7 @@ has_commands() {
 
     case $#pkgs in
         (0)
-            return 0
+            return $R_OK
             ;;
 
         (1)
@@ -195,10 +201,10 @@ detect_os() {
 _detect_linux() {
     if [[ -f /etc/fedora-release ]]; then
         print fedora
-        return 0
+        return $R_OK
     elif [[ -f /etc/centos-release ]]; then
         print centos
-        return 0
+        return $R_OK
     else
         return 1
     fi
@@ -210,7 +216,7 @@ get_package_install_command() {
     case $os in
         (fedora)
             print "dnf install"
-            return 0
+            return $R_OK
             ;;
 
         (*)
