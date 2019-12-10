@@ -42,6 +42,17 @@ ask_yesno() {
     done
 }
 
+printprompt() {
+    local msg=$1
+    local default=$2
+    local str="${WHITE}${msg}${RESET}"
+    if [[ -n $default ]]; then
+        str+=" (default: ${GREEN}${default}${RESET})"
+    fi
+    str+=": "
+    print -n $str
+}
+
 check_yesno() {
     var=${(L)1}
     if [[ -z $var ]]; then
