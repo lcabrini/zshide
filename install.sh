@@ -154,10 +154,11 @@ for mod in modules/*.zsh; do
     fi
 done
 
-exit
+sed "s|@ZI_HOME@|$ZI_HOME|" zi.zsh > $bindir/zi
+chmod +x $bindir/zi
+printlog install info "installed zi"
 
-sed "s|@ZI_HOME@|$ZI_HOME|" zi.zsh > $BINDIR/zi
-chmod +x $BINDIR/zi
+exit
 
 info "Installing zshide scripts"
 for f in *.zsh; do
