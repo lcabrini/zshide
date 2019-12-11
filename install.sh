@@ -133,7 +133,7 @@ for dir in $dirlist; do
 done
 
 if [[ -f $ZI_HOME/zshiderc ]]; then
-    printlog install warning "zshiderc already exists"
+    printlog install info "zshiderc already exists"
 else
     touch $ZI_HOME/zshiderc > /dev/null 2>&1
     if [[ $? -eq 0 ]]; then
