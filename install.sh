@@ -104,7 +104,15 @@ fi
 # TODO: if we need to check for any global dependencies, we should do it
 # here.
 
-dirlist=($ZI_HOME $bindir $tpldir)
+typeset -a dirlist=(
+    $ZI_HOME 
+    $bindir 
+    $tpldir 
+    $ZI_HOME/lib 
+    $ZI_HOME/github
+    $ZI_HOME/modules
+)
+
 for dir in $dirlist; do
     if [[ -d $dir ]]; then
         printlog install info "directory already exists" $dir
@@ -143,31 +151,7 @@ for mod in modules/*.zsh; do
     fi
 done
 
-#for dir in $BINDIR $ZI_HOME $TPLDIR 
-#if [[ ! -d $BINDIR ]]; then
-#    mkdir $BINDIR
-#    # TODO: check for errors
-#    printlog install info "created directory" $BINDIR
-#else
-#    printlog install info "BINDIR directory already exists" $BINDIR
-#fi
-
 exit
-
-if [[ ! -d $ZI_HOME ]]; then
-    info "$ZI_HOME does not exist, creating it"
-    mkdir $ZI_HOME
-fi
-
-if [[ ! -d $TPLDIR ]]; then
-    info "$TPLDIR does not exist, creating it"
-    mkdir $TPLDIR
-fi
-
-if [[ ! -d $ZI_HOME/github ]]; then
-    info "$ZI_HOME/github does not exist, creating it"
-    mkdir $ZI_HOME/github
-fi
 
 sed "s|@ZI_HOME@|$ZI_HOME|" zi.zsh > $BINDIR/zi
 chmod +x $BINDIR/zi
