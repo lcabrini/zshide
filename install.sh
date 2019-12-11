@@ -1,5 +1,8 @@
 #! /bin/sh
 
+# Help vim out a bit.
+# vim: ft=zsh
+
 if [ -z "$RUNNING_ZSH" ]; then
     which zsh > /dev/null 2>&1
     if [ "$?" -eq "0" ]; then
