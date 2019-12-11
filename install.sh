@@ -13,10 +13,10 @@ if [ -z "$RUNNING_ZSH" ]; then
 fi
 
 # Installation locations. You can change to suit your preferences.
-PREFIX=$HOME
-ZI_HOME=$PREFIX/.zshide
-BINDIR=$PREFIX/bin
-TPLDIR=$ZI_HOME/t
+prefix=$HOME
+ZI_HOME=$prefix/.zshide
+bindir=$prefix/bin
+tpldir=$ZI_HOME/t
 
 util=$PWD/lib/util.zsh
 if [[ -f $util ]]; then
@@ -104,19 +104,22 @@ fi
 # TODO: if we need to check for any global dependencies, we should do it
 # here.
 
-if [[ -d $ZI_HOME ]]; then
-    printlog install warning "the zshide directory already exits"
-else
-    mkdir $ZI_HOME > /dev/null 2>&1
-    if [[ $? -eq 0 ]]; then
-        printlog install info "created zshide directory" $ZI_HOME
+dirlist=($ZI_HOME $bindir $tpldir)
+for dir in $dirlist; do
+    if [[ -d $dir ]]; then
+        printlog install info "directory already exists" $dir
     else
-        printlog install error "unable to create zshide directory" $ZI_HOME
-        # TODO: find out what caused it to fail and offer options, if
-        # possible.
-        exit 1
+        mkdir $dir > /dev/null 2>&1
+        if [[ $? -eq 0 ]]; then
+            printlog install info "created directory" $dir
+        else
+            printlog install error "unable to create directory" $dir
+            # TODO: find out what caused it to fail and offer options, if
+            # possible.
+            exit 1
+        fi
     fi
-fi
+done
 
 if [[ -f $ZI_HOME/zshiderc ]]; then
     printlog install warning "zshiderc already exists"
@@ -140,20 +143,16 @@ for mod in modules/*.zsh; do
     fi
 done
 
-if [[ ! -d $BINDIR ]]; then
-    mkdir $BINDIR
-    # TODO: check for errors
-    printlog install info "created directory" $BINDIR
-else
-    printlog install info "BINDIR directory already exists" $BINDIR
-fi
+#for dir in $BINDIR $ZI_HOME $TPLDIR 
+#if [[ ! -d $BINDIR ]]; then
+#    mkdir $BINDIR
+#    # TODO: check for errors
+#    printlog install info "created directory" $BINDIR
+#else
+#    printlog install info "BINDIR directory already exists" $BINDIR
+#fi
 
 exit
-
-if [[ ! -d $BINDIR ]]; then
-    info "$BINDIR does not exist, creating it"
-    mkdir $BINDIR
-fi
 
 if [[ ! -d $ZI_HOME ]]; then
     info "$ZI_HOME does not exist, creating it"
