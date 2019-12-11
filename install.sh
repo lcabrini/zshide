@@ -1,28 +1,5 @@
 #! /bin/sh
 
-read -rd '' no_zsh <<EOF
-Z Shell could not be found.
-
-I was not able to find the zsh executable anywhere in your PATH, but
-zshide requires this shell to be installed on your system. If you are
-sure that you have zsh installed, you may need to update your PATH to
-include the location where the zsh executable is installed.
-
-If you haven't yet installed Z Shell, you can do so (requires you to be
-root or to have sudo access to install packages). You might also be able
-to build zsh yourself.
-
-To install on Fedora Linux:
-  # dnf install zsh
-To install on Red Hat or Cent OS:
-  # yum install zsh
-To install on Debian or Ubuntu:
-  # apt install zsh
-
-Once you have ensured that Z Shell is installed and that the zsh command
-is available in your PATH, you can try to run this installer again.
-EOF
-
 if [ -z "$RUNNING_ZSH" ]; then
     which zsh > /dev/null 2>&1
     if [ "$?" -eq "0" ]; then
@@ -49,8 +26,30 @@ else
     exit 1
 fi
 
+read -rd '' no_zsh <<EOF
+Z Shell could not be found.
+
+I was not able to find the zsh executable anywhere in your PATH, but
+zshide requires this shell to be installed on your system. If you are
+sure that you have zsh installed, you may need to update your PATH to
+include the location where the zsh executable is installed.
+
+If you haven't yet installed Z Shell, you can do so (requires you to be
+root or to have sudo access to install packages). You might also be able
+to build zsh yourself.
+
+To install on Fedora Linux:
+  # dnf install zsh
+To install on Red Hat or Cent OS:
+  # yum install zsh
+To install on Debian or Ubuntu:
+  # apt install zsh
+
+Once you have ensured that Z Shell is installed and that the zsh command
+is available in your PATH, you can try to run this installer again.
+EOF
+
 ZI_COLOR=no
-#DEST=foo
 
 setup_colors
 show_help=no
@@ -65,23 +64,9 @@ while (($#)); do
             setup_colors
             ;;
 
-        #(-d|--destination)
-        #    if [[ -n $1 ]]; then
-        #        DEST=$1
-        #        shift
-        #    else
-        #        printlog install error "no destination specified"
-        #        exit 1
-        #    fi
-        #    ;;
 
         (-h|--help)
             show_help=yes
-            #print $helpmsg >&2
-            #print_option c color "enable color output"
-            #print_option d destination "temporaty option, to be removed"
-            #print_option h help "show this help message"
-            #exit 0
             ;;
 
         (-I|non-interactive)
@@ -97,7 +82,6 @@ done
 if check_yesno $show_help; then
     print_usage $(basename $0)
     print_option c color "enable color output"
-    #print_option d destination "temporaty option, to be removed"
     print_option h help "show this help message"
     print_option I non-interactive "don't use interactive"
     exit 0
@@ -156,52 +140,15 @@ for mod in modules/*.zsh; do
     fi
 done
 
-exit
+if [[ ! -d $BINDIR ]]; then
+    mkdir $BINDIR
+    # TODO: check for errors
+    printlog install info "created directory" $BINDIR
+else
+    printlog install info "BINDIR directory already exists" $BINDIR
+fi
 
-# This is only a dependency if using GitHub, so it should come later.
-#printlog install info "checking for dependencies"
-#missing=$(has_commands jq)
-#
-#exit
-#
-## TODO: message is Fedora specific.
-#read -rd '' instmsg <<EOF
-#You are missing some required packages. If you have sudo access on this
-#system, they can be installed right now.
-#
-#Otherwise you will need to manually install them with:
-#  # dnf install $packages
-#
-#Do you want to procede to install (Y/N)?
-#EOF
-#
-#if [[ -n $packages ]]; then
-#    warn "required dependencies missing"
-#    print $instmsg
-#    read ans
-#    ans=$(print $ans | tr A-Z a-z)
-#    case $ans in
-#        (n|no)
-#            warn "aborting installation"
-#            exit 1
-#            ;;
-#
-#        (y|yes)
-#            # TODO: Fedora specific
-#            sudo dnf install $packages
-#            res=$?
-#            if [[ $res -ne 0 ]]; then
-#                err "error installing dependencies"
-#                exit 1
-#            fi
-#            ;;
-#
-#        (*)
-#            err "unrecognized answer: $ans. Aborting ..."
-#            exit 1
-#            ;;
-#    esac
-#fi
+exit
 
 if [[ ! -d $BINDIR ]]; then
     info "$BINDIR does not exist, creating it"
