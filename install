@@ -154,7 +154,7 @@ for mod in modules/*.zsh; do
     fi
 done
 
-sed "s|@ZI_HOME@|$ZI_HOME|" zi.zsh > $bindir/zi
+sed "s|@ZI_HOME@|$ZI_HOME|" zi > $bindir/zi
 chmod +x $bindir/zi
 printlog install info "installed zi"
 
