@@ -42,7 +42,7 @@ if [ -z "$RUNNING_ZSH" ]; then
                 read ans
                 case $ans in
                     y|yes)
-                        sr=$(sudo -nv 2>&1) | awk '{ print $1 }'
+                        sr=`sudo -nv 2>&1` | awk '{ print $1 }'
                         ec=$?
 
                         use_sudo=no
