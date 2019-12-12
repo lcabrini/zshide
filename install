@@ -33,8 +33,55 @@ if [ -z "$RUNNING_ZSH" ]; then
         zsh $0 "$@"
         exit $?
     else
-        echo "$no_zsh" >&2
-        exit 1
+        echo "Z Shell could not be found"
+        did_install_zsh=no
+        for pm in dnf yum apt; do
+            which $pm > /dev/null 2>&1
+            if [ "$?" -eq "0" ]; then
+                echo "Would you like to install it now?"
+                read ans
+                case $ans in
+                    y|yes)
+                        sr=$(sudo -nv 2>&1) | awk '{ print $1 }'
+                        ec=$?
+
+                        use_sudo=no
+                        if [ "$ec" -eq "0" ]; then
+                            use_sudo=yes
+                        elif [ "$sr" = "sudo:" ]; then
+                            use_sudo=yes
+                        fi
+
+                        if [ "$use_sudo" = "yes" ]; then
+                            # TODO: is this going to work on all
+                            # supported systems?
+                            sudo $pm -y install zsh
+                            # TODO: check for errors
+                            did_install_zsh=yes
+                            break
+                        else
+                            su -c "$pm -y install zsh"
+                            # TODO: check for errors
+                            did_install_zsh=yes
+                            break
+                        fi
+                        ;;
+
+                    n|no)
+                        print "Cannot continue without zsh."
+                        exit 1
+                        ;;
+
+                    *)
+                        print "Unrecognized answer. Aborting."
+                        exit 1
+                esac
+            fi
+        done
+        if [ "$did_install_zsh" = "no" ]; then
+            echo "Z Shell was not installed. Aborting."
+            exit 1
+        fi
     fi
 fi
 
