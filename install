@@ -64,6 +64,9 @@ if [ -z "$RUNNING_ZSH" ]; then
                             # TODO: check for errors
                             did_install_zsh=yes
                             break
+                        else
+                            echo "Cannot install zsh"
+                            exit 1
                         fi
                         ;;
 
