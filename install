@@ -59,7 +59,7 @@ if [ -z "$RUNNING_ZSH" ]; then
                             # TODO: check for errors
                             did_install_zsh=yes
                             break
-                        else
+                        elif [ -n `groups | grep wheel` ]; then
                             su -c "$pm -y install zsh"
                             # TODO: check for errors
                             did_install_zsh=yes
