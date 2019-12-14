@@ -81,3 +81,6 @@ on_preexec() {
 autoload -U add-zsh-hook
 add-zsh-hook chpwd on_chpwd
 add-zsh-hook preexec on_preexec
+
+# TODO: load custom zshide zshrc so that user can avoid modifying this
+# one
