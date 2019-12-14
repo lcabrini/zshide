@@ -209,6 +209,11 @@ sed "s|@ZI_HOME@|$ZI_HOME|" zi > $bindir/zi
 chmod +x $bindir/zi
 printlog install info "installed zi"
 
+for dir in github lib modules; do
+    cp $dir/* $ZI_HOME/$dir
+    printlog install info "installed files in:" $dir
+done
+
 exit
 
 info "Installing zshide scripts"
