@@ -35,6 +35,7 @@ if [ -z "$RUNNING_ZSH" ]; then
     else
         echo "Z Shell could not be found"
         did_install_zsh=no
+        # TODO: this goes deep. Can I do something about it?
         for pm in dnf yum apt; do
             which $pm > /dev/null 2>&1
             if [ "$?" -eq "0" ]; then
