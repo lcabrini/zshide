@@ -214,6 +214,9 @@ for dir in github lib modules; do
     printlog install info "installed files in:" $dir
 done
 
+cp -R templates $ZI_HOME
+printlog install info "installed templates" 
+
 exit
 
 info "Installing zshide scripts"
